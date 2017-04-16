@@ -1,11 +1,37 @@
 
+.category-div {
+  height: 10px;
+  width: 30px;
+  border-radius: 10px;
+}
+
 body {
   &.itemsIndex {
     div {
-      img {
-        max-height: 200px;
-        max-width: 400px;
+      .Garden {
+        @extend .category-div;
+        background-color: green;
       }
+      .Kitchen\/Home {
+        @extend .category-div;
+        background-color: yellow;
+      }
+      .Sports {
+        @extend .category-div;
+        background-color: dodgerblue;
+      }
+      .Books\/Maps {
+        @extend .category-div;
+        background-color: brown;
+      }
+      .DIY {
+        @extend .category-div;
+        background-color: orange;
+      }
+    }
+    img {
+      max-height: 200px;
+      max-width: 400px;
     }
   }
 }

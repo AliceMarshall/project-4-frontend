@@ -1,7 +1,9 @@
 <h2>Items Index</h2>
 <div ng-repeat="item in itemsIndex.all">
-  <h4>{{ item.name }}</h4>
+  <h4><a ui-sref="itemsShow({ id: item.id })">{{ item.name }}</a></h4>
   <div class="image-div">
     <img ng-src="{{ item.image }}" alt="{{ item.name }}">
+  </div>
+  <div class="{{ item.category.name }}">
   </div>
 </div>
