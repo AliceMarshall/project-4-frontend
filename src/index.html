@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="borrowApp">
   <head>
+    <base href="/">
     <meta charset="utf-8">
     <title>Angular Stack Setup</title>
     <!-- inject:js -->
@@ -8,6 +9,7 @@
     <!-- inject:css -->
     <!-- endinject -->
   </head>
-  <body>
+  <body ng-controller="MainCtrl as main">
+    <main ui-views></main>
   </body>
 </html>

@@ -1,1 +1,3 @@
-// app.js is the main JS file which you should define your Angular module
+angular
+  .module('borrowApp', ['ngResource', 'ui.router'])
+  .constant('API_URI', 'http://localhost:3000/api');
