@@ -1,3 +1,3 @@
 angular
-  .module('borrowApp', ['ngResource', 'ui.router'])
-  .constant('API_URI', 'http://localhost:3000/api');
+  .module('borrowApp', ['satellizer', 'ngResource', 'ui.router'])
+  .constant('API_URL', 'http://localhost:3000/api');

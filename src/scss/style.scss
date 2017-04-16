@@ -8,6 +8,7 @@
 body {
   &.itemsIndex {
     div {
+      display: inline-block;
       .Garden {
         @extend .category-div;
         background-color: green;
@@ -35,6 +36,9 @@ body {
     }
   }
   &.usersIndex {
+    div {
+      display: inline-block;
+    }
     img {
       max-height: 200px;
       max-width: 400px;
