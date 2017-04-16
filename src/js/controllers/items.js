@@ -5,7 +5,10 @@ angular
   // .controller('ItemsShowCtrl', ItemsShowCtrl)
   // .controller('ItemsEditCtrl', ItemsEditCtrl);
 
-function ItemsIndexCtrl() {
+ItemsIndexCtrl.$inject = ['Item'];
+function ItemsIndexCtrl(Item) {
   const vm = this;
+
+  vm.all = Item.query();
 
 }
