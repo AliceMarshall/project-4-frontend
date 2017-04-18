@@ -51,11 +51,11 @@ function Router($urlRouterProvider, $locationProvider, $stateProvider) {
     //   templateUrl: 'js/views/users/items.html',
     //   controller: 'UsersItemsCtrl as usersItems'
     // })
-    // .state('usersFriends', {
-    //   url: '/users/:id/friends',
-    //   templateUrl: 'js/views/users/friends.html',
-    //   controller: 'UsersFriendsCtrl as usersFriends'
-    // })
+    .state('usersFriends', {
+      url: '/users/:id/friends',
+      templateUrl: 'js/views/users/friends.html',
+      controller: 'UsersFriendsCtrl as usersFriends'
+    })
     .state('register', {
       url: '/register',
       templateUrl: 'js/views/auth/register.html',

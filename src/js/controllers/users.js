@@ -1,8 +1,7 @@
 angular
   .module('borrowApp')
   .controller('UsersIndexCtrl', UsersIndexCtrl)
-  // .controller('UsersFriendsCtrl', UsersFriendsCtrl)
-
+  .controller('UsersFriendsCtrl', UsersFriendsCtrl)
   .controller('UsersShowCtrl', UsersShowCtrl);
   // .controller('UsersEditCtrl', UsersEditCtrl);
 
@@ -24,13 +23,13 @@ function UsersIndexCtrl(User) {
 
 }
 
-// UsersFriendsCtrl.$inject = ['User'];
-// function UsersFriendsCtrl(User) {
-//   const vm = this;
-//
-//   vm.all = User.query();
-// }
-//
+UsersFriendsCtrl.$inject = ['User', '$auth'];
+function UsersFriendsCtrl(User, $auth) {
+  const vm = this;
+  vm.user = User.get({ id: $auth.getPayload().id });
+
+}
+
 UsersShowCtrl.$inject = ['User', '$auth', '$state'];
 function UsersShowCtrl(User, $auth, $state) {
   const vm = this;

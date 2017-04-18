@@ -1,1 +1,12 @@
-<h1>Friends</h1>
+<h1>{{ usersFriends.user.full_name }}'s Friends</h1>
+
+<div ng-repeat="friend in usersFriends.user.friends">
+  <div class="row item">
+    <div class="image col-sm-3">
+      <img ng-src="{{ friend.profile_image }}" alt="{{ friend.full_name }}">
+    </div>
+    <div class="col-sm-9 info">
+      <h3>{{ friend.full_name }}</h3>
+    </div>
+  </div>
+</div>
