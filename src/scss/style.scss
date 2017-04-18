@@ -81,7 +81,24 @@ body {
         max-width: 400px;
       }
     }
-
-
+  }
+  &.usersShow {
+    @extend .heading-styles;
+    .item {
+      margin: 15px 0;
+      .image {
+        img {
+          max-width: 100%;
+          max-height: 300px
+        }
+      }
+      .info {
+        p {
+          text-transform: none;
+          letter-spacing: 0.5px;
+          font-size: 16px;
+        }
+      }
+    }
   }
 }
