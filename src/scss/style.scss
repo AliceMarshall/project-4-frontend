@@ -1,32 +1,69 @@
 
-.category-div {
-  height: 10px;
-  width: 30px;
+.category {
+  height: 20px;
+  width: 20px;
   border-radius: 10px;
 }
 
+.heading-styles {
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+header {
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  height: 40px;
+  background-color: rgba(20, 20, 20, 0);
+  transition: background-color 0.2s ease;
+  nav {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+      li {
+        display: inline-block;
+        // float: right;
+        margin-left: 20px;
+        line-height: 40px;
+        a {
+          color: black;
+          @extend .heading-styles;
+          font-weight: bold;
+          position: relative;
+        }
+      }
+    }
+  }
+}
+
+
 body {
+  font-family: 'Karla', sans-serif;
   &.itemsIndex {
+    @extend .heading-styles;
     div {
-      display: inline-block;
       .Garden {
-        @extend .category-div;
+        @extend .category;
         background-color: green;
       }
       .Kitchen\/Home {
-        @extend .category-div;
+        @extend .category;
         background-color: yellow;
       }
       .Sports {
-        @extend .category-div;
+        @extend .category;
         background-color: dodgerblue;
       }
       .Books\/Maps {
-        @extend .category-div;
+        @extend .category;
         background-color: brown;
       }
       .DIY {
-        @extend .category-div;
+        @extend .category;
         background-color: orange;
       }
     }
@@ -36,12 +73,15 @@ body {
     }
   }
   &.usersIndex {
-    div {
-      display: inline-block;
+    @extend .heading-styles;
+    .row {
+      margin: 0 auto;
+      img {
+        max-height: 200px;
+        max-width: 400px;
+      }
     }
-    img {
-      max-height: 200px;
-      max-width: 400px;
-    }
+
+
   }
 }

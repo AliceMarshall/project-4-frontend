@@ -12,11 +12,12 @@ function ItemsIndexCtrl(Item) {
   vm.all = Item.query();
 }
 
-ItemsNewCtrl.$inject = ['Item', 'User', '$state'];
-function ItemsNewCtrl(Item, User, $state) {
+ItemsNewCtrl.$inject = ['Item', 'User', 'Category', '$state'];
+function ItemsNewCtrl(Item, User, Category, $state) {
   const vm = this;
 
   vm.user = User.query();
+  vm.categories = Category.query();
 
   function submit() {
     Item.save(vm.item)
@@ -42,12 +43,13 @@ function ItemsShowCtrl(Item, $stateParams, $state) {
   vm.delete = itemDelete;
 }
 
-ItemsEditCtrl.$inject = ['Item', 'User', '$stateParams', '$state'];
-function ItemsEditCtrl(Item, User, $stateParams, $state) {
+ItemsEditCtrl.$inject = ['Item', 'User', 'Category', '$stateParams', '$state'];
+function ItemsEditCtrl(Item, User, Category, $stateParams, $state) {
   const vm = this;
 
   vm.item = Item.get($stateParams);
   vm.users = User.query();
+  vm.categories = Category.query();
 
   function itemUpdate() {
     vm.item

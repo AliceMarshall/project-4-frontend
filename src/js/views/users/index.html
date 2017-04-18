@@ -1,11 +1,14 @@
 <h2>Users Index</h2>
-<div ng-repeat="user in usersIndex.all">
-  <h4>{{ user.full_name }}</h4>
-  <div class="image-div">
-    <img ng-src="{{ user.profile_image }}" alt="{{ user.full_name }}">
+<div class="row">
+  <div ng-repeat="user in usersIndex.all" class="col-sm-6 col-md-4">
+    <h4>{{ user.full_name }}</h4>
+    <div class="image-div">
+      <img ng-src="{{ user.profile_image }}" alt="{{ user.full_name }}">
+    </div>
+    <h5>Friends:</h5>
+    <ul>
+      <li ng-repeat="friend in user.friends">{{ friend.full_name }}</li>
+    </ul>
+    <button type="button" ng-click="usersIndex.requestFriend(user)">Add Friend</button>
   </div>
-  <h5>Friends:</h5>
-  <ul>
-    <li ng-repeat="friend in user.friends">{{ friend.full_name }}</li>
-  </ul>
 </div>

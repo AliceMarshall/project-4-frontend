@@ -1,6 +1,8 @@
 angular
   .module('borrowApp')
   .controller('UsersIndexCtrl', UsersIndexCtrl);
+  // .controller('UsersFriendsCtrl', UsersFriendsCtrl);
+
   // .controller('UsersShowCtrl', UsersShowCtrl)
   // .controller('UsersEditCtrl', UsersEditCtrl);
 
@@ -9,7 +11,25 @@ function UsersIndexCtrl(User) {
   const vm = this;
 
   vm.all = User.query();
+
+  function requestFriend(user) {
+    console.log(user);
+    User
+      .requestFriend({ friend_id: user.id })
+      .$promise
+      .then((friend) => console.log(friend));
+  }
+
+  vm.requestFriend = requestFriend;
+
 }
+
+// UsersFriendsCtrl.$inject = ['User'];
+// function UsersFriendsCtrl(User) {
+//   const vm = this;
+//
+//   vm.all = User.query();
+// }
 //
 // UsersShowCtrl.$inject = ['User', '$stateParams', '$state'];
 // function UsersShowCtrl(User, $stateParams, $state) {

@@ -27,11 +27,31 @@ function Router($urlRouterProvider, $locationProvider, $stateProvider) {
       templateUrl: 'js/views/items/edit.html',
       controller: 'ItemsEditCtrl as itemsEdit'
     })
+    .state('categoriesIndex', {
+      url: '/categories',
+      templateUrl: 'js/views/categories/index.html',
+      controller: 'CategoriesIndexCtrl as categoriesIndex'
+    })
     .state('usersIndex', {
       url: '/users',
       templateUrl: 'js/views/users/index.html',
       controller: 'UsersIndexCtrl as usersIndex'
     })
+    // .state('usersShow', {
+    //   url: '/users/:id',
+    //   templateUrl: 'js/views/users/show.html',
+    //   controller: 'UsersShowCtrl as usersShow'
+    // })
+    // .state('usersItems', {
+    //   url: '/users/:id/items',
+    //   templateUrl: 'js/views/users/items.html',
+    //   controller: 'UsersItemsCtrl as usersItems'
+    // })
+    // .state('usersFriends', {
+    //   url: '/users/:id/friends',
+    //   templateUrl: 'js/views/users/friends.html',
+    //   controller: 'UsersFriendsCtrl as usersFriends'
+    // })
     .state('register', {
       url: '/register',
       templateUrl: 'js/views/auth/register.html',

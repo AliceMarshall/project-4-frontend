@@ -1,9 +1,10 @@
 <h2>Items Index</h2>
-<div ng-repeat="item in itemsIndex.all">
-  <h4><a ui-sref="itemsShow({ id: item.id })">{{ item.name }}</a></h4>
-  <div class="image-div">
-    <img ng-src="{{ item.image }}" alt="{{ item.name }}">
-  </div>
-  <div class="{{ item.category.name }}">
+<div class="row">
+  <div ng-repeat="item in itemsIndex.all" class="col-sm-6 col-md-4">
+    <h4><a ui-sref="itemsShow({ id: item.id })">{{ item.name }}</a></h4>
+    <div class="category {{ item.category.name }}"></div>
+    <div class="image-div">
+      <img ng-src="{{ item.image }}" alt="{{ item.name }}">
+    </div>
   </div>
 </div>
