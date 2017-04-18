@@ -1,9 +1,9 @@
 angular
   .module('borrowApp')
-  .controller('UsersIndexCtrl', UsersIndexCtrl);
-  // .controller('UsersFriendsCtrl', UsersFriendsCtrl);
+  .controller('UsersIndexCtrl', UsersIndexCtrl)
+  // .controller('UsersFriendsCtrl', UsersFriendsCtrl)
 
-  // .controller('UsersShowCtrl', UsersShowCtrl)
+  .controller('UsersShowCtrl', UsersShowCtrl);
   // .controller('UsersEditCtrl', UsersEditCtrl);
 
 UsersIndexCtrl.$inject = ['User'];
@@ -31,20 +31,20 @@ function UsersIndexCtrl(User) {
 //   vm.all = User.query();
 // }
 //
-// UsersShowCtrl.$inject = ['User', '$stateParams', '$state'];
-// function UsersShowCtrl(User, $stateParams, $state) {
-//   const vm = this;
-//
-//   vm.item = User.get($stateParams);
-//
-//   function itemDelete() {
-//     vm.item
-//       .$remove()
-//       .then(() => $state.go('itemsIndex'));
-//   }
-//
-//   vm.delete = itemDelete;
-// }
+UsersShowCtrl.$inject = ['User', '$auth', '$state'];
+function UsersShowCtrl(User, $auth, $state) {
+  const vm = this;
+
+  vm.user = User.get({ id: $auth.getPayload().id });
+  console.log(vm.user);
+  // function itemDelete() {
+  //   vm.user
+  //     .$remove()
+  //     .then(() => $state.go('itemsIndex'));
+  // }
+
+  // vm.delete = itemDelete;
+}
 //
 // UsersEditCtrl.$inject = ['User', 'User', '$stateParams', '$state'];
 // function UsersEditCtrl(User, User, $stateParams, $state) {
