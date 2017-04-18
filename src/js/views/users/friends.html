@@ -10,3 +10,16 @@
     </div>
   </div>
 </div>
+
+<h2>Pending Friends</h2>
+
+<div ng-repeat="pending in usersFriends.pending">
+  <div class="row item">
+    <div class="image col-sm-3">
+      <img ng-src="{{ pending.profile_image }}" alt="{{ pending.full_name }}">
+    </div>
+    <div class="col-sm-9 info">
+      <h3>{{ pending.full_name }}</h3>
+    </div>
+  </div>
+</div>

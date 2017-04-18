@@ -12,7 +12,6 @@ function UsersIndexCtrl(User) {
   vm.all = User.query();
 
   function requestFriend(user) {
-    console.log(user);
     User
       .requestFriend({ friend_id: user.id })
       .$promise
@@ -20,14 +19,29 @@ function UsersIndexCtrl(User) {
   }
 
   vm.requestFriend = requestFriend;
-
 }
 
 UsersFriendsCtrl.$inject = ['User', '$auth'];
 function UsersFriendsCtrl(User, $auth) {
   const vm = this;
-  vm.user = User.get({ id: $auth.getPayload().id });
 
+  vm.user = [];
+  vm.pending = [];
+
+  function currentUser() {
+    User
+      .get({ id: $auth.getPayload().id })
+      .$promise
+      .then((response) => {
+        vm.user = response;
+        (response.friendships).forEach((arr) => {
+          if (arr.status === 'pending') {
+            vm.pending.push(User.get({ id: arr.friend_id }));
+          }
+        });
+      });
+  }
+  currentUser();
 }
 
 UsersShowCtrl.$inject = ['User', '$auth', '$state'];
