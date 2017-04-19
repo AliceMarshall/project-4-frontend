@@ -28,10 +28,11 @@ function ItemsNewCtrl(Item, User, Category, $state) {
   vm.submit = submit;
 }
 
-ItemsShowCtrl.$inject = ['Item', '$stateParams', '$state'];
-function ItemsShowCtrl(Item, $stateParams, $state) {
+ItemsShowCtrl.$inject = ['Item', 'User', 'Comment', '$stateParams', '$state', '$auth'];
+function ItemsShowCtrl(Item, User, Comment, $stateParams, $state, $auth) {
   const vm = this;
 
+  if ($auth.getPayload()) vm.currentUser = User.get({ id: $auth.getPayload().id });
   vm.item = Item.get($stateParams);
 
   function itemDelete() {
@@ -39,8 +40,31 @@ function ItemsShowCtrl(Item, $stateParams, $state) {
       .$remove()
       .then(() => $state.go('itemsIndex'));
   }
-
   vm.delete = itemDelete;
+
+  function addComment() {
+    vm.comment.item_id = vm.item.id;
+    Comment
+      .save({ comment: vm.comment })
+      .$promise
+      .then((comment) => {
+        vm.item.comments.push(comment);
+        vm.comment = {};
+      });
+  }
+  vm.addComment = addComment;
+
+  function deleteComment(comment) {
+    Comment
+      .delete({ id: comment.id })
+      .$promise
+      .then(() => {
+        const index = vm.item.comments.indexOf(comment);
+        vm.item.comments.splice(index, 1);
+      });
+  }
+
+  vm.deleteComment = deleteComment;
 }
 
 ItemsEditCtrl.$inject = ['Item', 'User', 'Category', '$stateParams', '$state'];
