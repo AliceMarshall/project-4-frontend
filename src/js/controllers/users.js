@@ -28,20 +28,54 @@ function UsersFriendsCtrl(User, $auth) {
   vm.user = [];
   vm.pending = [];
 
-  function currentUser() {
+  function friendshipRequests() {
     User
       .get({ id: $auth.getPayload().id })
       .$promise
       .then((response) => {
         vm.user = response;
         (response.friendships).forEach((arr) => {
-          if (arr.status === 'pending') {
+          if (arr.status === 'requested' || arr.status === 'pending') {
             vm.pending.push(User.get({ id: arr.friend_id }));
           }
         });
       });
   }
-  currentUser();
+  friendshipRequests();
+
+  function acceptFriend(user) {
+    User
+      .acceptFriend({ friend_id: user.id })
+      .$promise
+      .then((friend) => {
+        // const index = vm.user.attendee_ids.indexOf(vm.currentUser.id);
+        // if (index > -1) {
+        //   vm.event.attendee_ids.splice(index, 1);
+        //   vm.event.attendees.splice(index, 1);
+        // } else {
+        //   vm.event.attendee_ids.push(vm.currentUser.id);
+        //   vm.event.attendees.push(vm.currentUser);
+        // }
+        console.log(friend);
+      });
+  }
+  vm.acceptFriend = acceptFriend;
+
+  function declineFriend(user) {
+    User
+      .declineFriend({ friend_id: user.id })
+      .$promise
+      .then((friend) => console.log(friend));
+  }
+  vm.declineFriend = declineFriend;
+
+  function removeFriend(user) {
+    User
+      .removeFriend({ friend_id: user.id })
+      .$promise
+      .then((friend) => console.log(friend));
+  }
+  vm.removeFriend = removeFriend;
 }
 
 UsersShowCtrl.$inject = ['User', '$auth', '$state'];
