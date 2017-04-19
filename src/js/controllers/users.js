@@ -171,8 +171,47 @@ function SentRequestsCtrl(User, Request, Item, $auth, $state) {
   // vm.requests = Request.query({ borrower_id: $auth.getPayload().id });
 }
 
-ReceivedRequestsCtrl.$inject = ['User', 'Request', 'Item'];
-function ReceivedRequestsCtrl() {
+ReceivedRequestsCtrl.$inject = ['User', 'Request', 'Item', '$auth'];
+function ReceivedRequestsCtrl(User, Request, Item, $auth) {
+  const vm = this;
+
+  vm.currentUser = [];
+  vm.user = User.query();
+
+  function getUser() {
+    User
+      .get({ id: $auth.getPayload().id })
+      .$promise
+      .then((response) => {
+        vm.currentUser = response;
+        getRequests();
+      });
+  }
+  getUser();
+
+  function getRequests() {
+    Request
+      .query()
+      .$promise
+      .then((result) => {
+        vm.requests = [];
+        result.forEach((arr) => {
+          if (arr.owner_id === vm.currentUser.id) {
+            vm.requests.push(arr);
+          }
+        });
+        findBorrower();
+      });
+  }
+
+  function findBorrower() {
+    User
+      .query()
+      .$promise
+      .then((response) => {
+        vm.users = response;
+      });
+  }
 
 }
 
