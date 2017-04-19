@@ -2,7 +2,10 @@ angular
   .module('borrowApp')
   .controller('UsersIndexCtrl', UsersIndexCtrl)
   .controller('UsersFriendsCtrl', UsersFriendsCtrl)
-  .controller('UsersShowCtrl', UsersShowCtrl);
+  .controller('UsersShowCtrl', UsersShowCtrl)
+  .controller('SentRequestsCtrl', SentRequestsCtrl)
+  .controller('ReceivedRequestsCtrl', ReceivedRequestsCtrl);
+
   // .controller('UsersEditCtrl', UsersEditCtrl);
 
 UsersIndexCtrl.$inject = ['User', '$auth'];
@@ -91,8 +94,6 @@ function UsersFriendsCtrl(User, $auth) {
 
   function ifPending(pending) {
     if (pending.$resolved && vm.currentUser.$resolved) {
-      // console.log(vm.pending);
-      // console.log(pending.friendships[1].status)
       vm.currentUser.friendships.find((friendship) => {
         console.log(friendship);
         return console.log(friendship.status === 'requested');
@@ -116,6 +117,65 @@ function UsersShowCtrl(User, $auth, $state) {
 
   // vm.delete = itemDelete;
 }
+
+SentRequestsCtrl.$inject = ['User', 'Request', 'Item', '$auth', '$state'];
+function SentRequestsCtrl(User, Request, Item, $auth, $state) {
+  const vm = this;
+
+  vm.currentUser = [];
+  vm.user = User.query();
+
+  function getUser() {
+    User
+      .get({ id: $auth.getPayload().id })
+      .$promise
+      .then((response) => {
+        vm.currentUser = response;
+        getRequests();
+      });
+  }
+  getUser();
+
+  function getRequests() {
+    Request
+      .query()
+      .$promise
+      .then((result) => {
+        vm.requests = [];
+        result.forEach((arr) => {
+          if (arr.borrower_id === vm.currentUser.id) {
+            vm.requests.push(arr);
+          }
+        });
+        findOwner();
+      });
+  }
+
+  function findOwner() {
+    User
+      .query()
+      .$promise
+      .then((response) => {
+        vm.users = response;
+      });
+  }
+
+  function cancelRequest(request) {
+    vm.request = request;
+    vm.request
+      .$remove()
+      .then(() => $state.go('usersShow'));
+  }
+  vm.cancelRequest = cancelRequest;
+
+  // vm.requests = Request.query({ borrower_id: $auth.getPayload().id });
+}
+
+ReceivedRequestsCtrl.$inject = ['User', 'Request', 'Item'];
+function ReceivedRequestsCtrl() {
+
+}
+
 //
 // UsersEditCtrl.$inject = ['User', 'User', '$stateParams', '$state'];
 // function UsersEditCtrl(User, User, $stateParams, $state) {

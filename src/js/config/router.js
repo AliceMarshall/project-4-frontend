@@ -56,6 +56,16 @@ function Router($urlRouterProvider, $locationProvider, $stateProvider) {
       templateUrl: 'js/views/users/friends.html',
       controller: 'UsersFriendsCtrl as usersFriends'
     })
+    .state('sentRequests', {
+      url: '/profile/sentrequests',
+      templateUrl: 'js/views/users/sentRequests.html',
+      controller: 'SentRequestsCtrl as sentRequests'
+    })
+    .state('receivedRequests', {
+      url: '/profile/receivedrequests',
+      templateUrl: 'js/views/users/receivedRequests.html',
+      controller: 'ReceivedRequestsCtrl as receivedRequests'
+    })
     .state('register', {
       url: '/register',
       templateUrl: 'js/views/auth/register.html',

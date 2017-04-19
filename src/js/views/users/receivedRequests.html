@@ -1,0 +1,15 @@
+<h2>Received Requests</h2>
+
+<div ng-repeat="request in sentRequests.requests" >
+  <div class="row item">
+    <div class="image col-sm-5">
+      <img ng-src="{{ request.item.image }}" alt="{{ request.item.name }}">
+    </div>
+    <div class="col-sm-7 info">
+      <h3><a ui-sref="itemsShow({ id: item.id })">{{ request.item.name }}</a></h3>
+      <h4>Owner: {{ sentRequests.users[request.owner_id - 1].full_name }}</h4>
+      <h5>Status: {{ request.status }}</h5>
+      <button class="btn" ng-click="sentRequests.cancelRequest(request)">Cancel Request</button>
+    </div>
+  </div>
+</div>

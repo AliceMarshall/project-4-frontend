@@ -64,9 +64,7 @@ function ItemsShowCtrl(Item, User, Comment, Request, $stateParams, $state, $auth
         vm.item.comments.splice(index, 1);
       });
   }
-
   vm.deleteComment = deleteComment;
-
 
   function makeRequest() {
     vm.request.status = 'pending';
@@ -79,7 +77,6 @@ function ItemsShowCtrl(Item, User, Comment, Request, $stateParams, $state, $auth
         console.log(vm.request);
       });
   }
-
   vm.makeRequest = makeRequest;
 }
 
@@ -96,6 +93,5 @@ function ItemsEditCtrl(Item, User, Category, $stateParams, $state) {
       .$update()
       .then(() => $state.go('itemsShow', $stateParams));
   }
-
   vm.update = itemUpdate;
 }
