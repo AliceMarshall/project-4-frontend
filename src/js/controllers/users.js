@@ -55,7 +55,7 @@ function UsersFriendsCtrl(User, $auth) {
         vm.pending = [];
         vm.currentUser = response;
         response.friendships.forEach((arr) => {
-          if (arr.status === 'requested' || arr.status === 'pending') {
+          if (arr.status === 'requested') {
             vm.pending.push(User.get({ id: arr.friend_id }));
           }
         });
@@ -91,9 +91,11 @@ function UsersFriendsCtrl(User, $auth) {
 
   function ifPending(pending) {
     if (pending.$resolved && vm.currentUser.$resolved) {
-      pending.friendships.find((friendship) => {
+      // console.log(vm.pending);
+      // console.log(pending.friendships[1].status)
+      vm.currentUser.friendships.find((friendship) => {
         console.log(friendship);
-        return friendship.status === 'pending';
+        return console.log(friendship.status === 'requested');
       });
     }
   }

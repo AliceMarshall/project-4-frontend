@@ -14,6 +14,8 @@
 
 <h2>Pending Friends</h2>
 
+<h4 ng-if="usersFriends.pending.length === 0">You have no pending requests</h4>
+
 <div ng-repeat="pending in usersFriends.pending">
   <div class="row item">
     <div class="image col-sm-3">
@@ -21,7 +23,7 @@
     </div>
     <div class="col-sm-9 info">
       <h3>{{ pending.full_name }}</h3>
-      <p ng-if="usersFriends.ifPending(pending)">{{ pending.full_name }}</p>
+      <p ng-click="usersFriends.ifPending(pending)">{{ pending.full_name }}</p>
       <p>{{ currentUser.friendships[1].status }}</p>
       <button type="button" ng-click="usersFriends.acceptFriend(pending)">Accept Friend Request</button>
       <button type="button" ng-click="usersFriends.declineFriend(pending)">Decline Friend Request</button>

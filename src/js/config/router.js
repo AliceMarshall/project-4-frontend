@@ -52,7 +52,7 @@ function Router($urlRouterProvider, $locationProvider, $stateProvider) {
     //   controller: 'UsersItemsCtrl as usersItems'
     // })
     .state('usersFriends', {
-      url: '/users/:id/friends',
+      url: '/profile/friends',
       templateUrl: 'js/views/users/friends.html',
       controller: 'UsersFriendsCtrl as usersFriends'
     })
