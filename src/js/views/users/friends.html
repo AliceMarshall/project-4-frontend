@@ -1,6 +1,6 @@
-<h1>{{ usersFriends.user.full_name }}'s Friends</h1>
+<h1>{{ usersFriends.currentUser.full_name }}'s Friends</h1>
 
-<div ng-repeat="friend in usersFriends.user.friends">
+<div ng-repeat="friend in usersFriends.currentUser.friends">
   <div class="row item">
     <div class="image col-sm-3">
       <img ng-src="{{ friend.profile_image }}" alt="{{ friend.full_name }}">
@@ -21,6 +21,8 @@
     </div>
     <div class="col-sm-9 info">
       <h3>{{ pending.full_name }}</h3>
+      <p ng-if="usersFriends.ifPending(pending)">{{ pending.full_name }}</p>
+      <p>{{ currentUser.friendships[1].status }}</p>
       <button type="button" ng-click="usersFriends.acceptFriend(pending)">Accept Friend Request</button>
       <button type="button" ng-click="usersFriends.declineFriend(pending)">Decline Friend Request</button>
     </div>
