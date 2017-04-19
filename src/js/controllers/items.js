@@ -28,12 +28,13 @@ function ItemsNewCtrl(Item, User, Category, $state) {
   vm.submit = submit;
 }
 
-ItemsShowCtrl.$inject = ['Item', 'User', 'Comment', '$stateParams', '$state', '$auth'];
-function ItemsShowCtrl(Item, User, Comment, $stateParams, $state, $auth) {
+ItemsShowCtrl.$inject = ['Item', 'User', 'Comment', 'Request', '$stateParams', '$state', '$auth'];
+function ItemsShowCtrl(Item, User, Comment, Request, $stateParams, $state, $auth) {
   const vm = this;
 
   if ($auth.getPayload()) vm.currentUser = User.get({ id: $auth.getPayload().id });
   vm.item = Item.get($stateParams);
+  vm.request = {};
 
   function itemDelete() {
     vm.item
@@ -65,6 +66,21 @@ function ItemsShowCtrl(Item, User, Comment, $stateParams, $state, $auth) {
   }
 
   vm.deleteComment = deleteComment;
+
+
+  function makeRequest() {
+    vm.request.status = 'pending';
+    vm.request.item_id = vm.item.id;
+    vm.request.owner_id = vm.item.user.id;
+    vm.request.borrower_id = vm.currentUser.id;
+    Request.save(vm.request)
+      .$promise
+      .then(() => {
+        console.log(vm.request);
+      });
+  }
+
+  vm.makeRequest = makeRequest;
 }
 
 ItemsEditCtrl.$inject = ['Item', 'User', 'Category', '$stateParams', '$state'];

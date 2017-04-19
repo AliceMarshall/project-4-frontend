@@ -18,7 +18,7 @@
       <div class="form-group">
         <label>Category</label><br>
         <select ng-model="itemsEdit.item.category" class="select">
-          <option disabled selected value="">Please select...</option>
+          <option disabled selected>Please select...</option>
           <option ng-repeat="category in itemsEdit.categories" ng-value="{{ category.id }}">{{ category.name }}</option>
         </select>
       </div>

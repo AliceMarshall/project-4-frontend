@@ -7,20 +7,24 @@
     <h2>{{ itemsShow.item.name }}</h2>
     <h4>Instructions</h4>
     <p>{{ itemsShow.item.instructions }}</p>
+
     <a ng-if="itemsShow.item.user.id === main.currentUser.id" ui-sref="itemsEdit({ id: itemsShow.item.id })" class="btn">Edit</a>
     <button ng-if="itemsShow.item.user.id === main.currentUser.id" ng-click="itemsShow.delete()" class="btn">Delete</button>
-    <a ng-if="itemsShow.item.user.id !== main.currentUser.id" ng-click="" class="btn">Request to Borrow</a>
+
+    <button ng-if="itemsShow.item.user.id !== main.currentUser.id" ng-click="itemsShow.makeRequest()" class="btn">Request to Borrow</button>
+
+
     <a ng-if="itemsShow.item.user.id !== main.currentUser.id" ng-click="" class="btn">Questions about item?</a>
   </div>
 </div>
 <h2>Comments</h2>
 <div class="row item">
-  <div class="image col-sm-5">
+  <div class="col-sm-6">
     <ul>
       <li ng-repeat="comment in itemsShow.item.comments">{{ comment.body }} - <strong>{{ comment.user.username }}</strong><button ng-click="itemsShow.deleteComment(comment)" ng-if="main.isAuthenticated() && main.currentUser.id === comment.user.id">Delete</button></li>
     </ul>
   </div>
-  <div class="info col-sm-7" ng-if="main.isAuthenticated()">
+  <div class="info col-sm-6" ng-if="main.isAuthenticated()">
     <h4>Add Comment</h4>
     <form ng-submit="itemsShow.addComment()">
       <textarea type="text" name="body" rows="8" cols="50" ng-model="itemsShow.comment.body"></textarea>
