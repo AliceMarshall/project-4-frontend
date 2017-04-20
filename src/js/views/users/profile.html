@@ -11,8 +11,10 @@
     </div>
     <div class="col-sm-7 info">
       <h3><a ui-sref="itemsShow({ id: item.id })">{{ item.name }}</a></h3>
-      <h4>Instructions</h4>
+      <h4>Information</h4>
       <p>{{ item.instructions }}</p>
+      <h5 ng-if="item.available">Status: Available</h5>
+      <h5 ng-if="!item.available">Status: Unavailable</h5>
     </div>
   </div>
 </div>

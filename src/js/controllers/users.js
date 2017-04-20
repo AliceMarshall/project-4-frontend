@@ -177,6 +177,7 @@ function ReceivedRequestsCtrl(User, Request, Item, $auth) {
 
   vm.currentUser = [];
   vm.user = User.query();
+  vm.items = Item.query();
 
   function getUser() {
     User
@@ -196,7 +197,7 @@ function ReceivedRequestsCtrl(User, Request, Item, $auth) {
       .then((result) => {
         vm.requests = [];
         result.forEach((arr) => {
-          if (arr.owner_id === vm.currentUser.id) {
+          if (arr.owner_id === vm.currentUser.id && arr.status !== 'remove') {
             vm.requests.push(arr);
           }
         });
@@ -212,6 +213,34 @@ function ReceivedRequestsCtrl(User, Request, Item, $auth) {
         vm.users = response;
       });
   }
+
+  function itemRequestAccept(request, item) {
+    vm.request = request;
+    vm.request.status = 'accepted'
+    vm.request
+      .$update()
+      .then(() => console.log(vm.request));
+    Item
+      .get({ id: item.id })
+      .$promise
+      .then((response) => {
+        vm.item = response;
+        vm.item.available = false;
+        vm.item
+          .$update()
+          .then(() => console.log(vm.item));
+      });
+  }
+  vm.itemRequestAccept = itemRequestAccept;
+
+  function itemRequestReject(request) {
+    vm.request = request;
+    vm.request.status = 'rejected'
+    vm.request
+      .$update()
+      .then(() => console.log(vm.request));
+  }
+  vm.itemRequestReject = itemRequestReject;
 
 }
 

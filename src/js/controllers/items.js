@@ -20,6 +20,7 @@ function ItemsNewCtrl(Item, User, Category, $state) {
   vm.categories = Category.query();
 
   function submit() {
+    vm.item.available = true;
     Item.save(vm.item)
       .$promise
       .then(() => $state.go('itemsIndex'));
@@ -78,6 +79,18 @@ function ItemsShowCtrl(Item, User, Comment, Request, $stateParams, $state, $auth
       });
   }
   vm.makeRequest = makeRequest;
+
+  function editAvailable() {
+    if (vm.item.available) {
+      vm.item.available = false;
+    } else {
+      vm.item.available = true;
+    }
+    vm.item
+      .$update()
+      .then(() => console.log(vm.item));
+  }
+  vm.editAvailable = editAvailable;
 }
 
 ItemsEditCtrl.$inject = ['Item', 'User', 'Category', '$stateParams', '$state'];

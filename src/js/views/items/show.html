@@ -5,11 +5,15 @@
   </div>
   <div class="col-sm-7 info">
     <h2>{{ itemsShow.item.name }}</h2>
-    <h4>Instructions</h4>
+    <h4>Information</h4>
     <p>{{ itemsShow.item.instructions }}</p>
+    <h5 ng-if="itemsShow.item.available">Status: Available</h5>
+    <h5 ng-if="!itemsShow.item.available">Status: Unavailable</h5>
 
     <a ng-if="itemsShow.item.user.id === main.currentUser.id" ui-sref="itemsEdit({ id: itemsShow.item.id })" class="btn">Edit</a>
     <button ng-if="itemsShow.item.user.id === main.currentUser.id" ng-click="itemsShow.delete()" class="btn">Delete</button>
+    <button ng-if="itemsShow.item.user.id === main.currentUser.id && itemsShow.item.available" ng-click="itemsShow.editAvailable()" class="btn">Make Item Unavailable</button>
+    <button ng-if="itemsShow.item.user.id === main.currentUser.id && !itemsShow.item.available" ng-click="itemsShow.editAvailable()" class="btn">Make Item Available</button>
 
     <button ng-if="itemsShow.item.user.id !== main.currentUser.id" ng-click="itemsShow.makeRequest()" class="btn">Request to Borrow</button>
 
