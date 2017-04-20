@@ -42,6 +42,17 @@ function UsersIndexCtrl(User, $auth) {
     }
   }
   vm.requested = requested;
+
+  function mutualFriends(user) {
+    User
+      .mutualFriends({ friend_id: user.id })
+      .$promise
+      .then((friend) => {
+        vm.currentUser = User.get({ id: $auth.getPayload().id });
+      });
+  }
+  vm.mutualFriends = mutualFriends;
+
 }
 
 UsersFriendsCtrl.$inject = ['User', '$auth'];
@@ -216,7 +227,7 @@ function ReceivedRequestsCtrl(User, Request, Item, $auth) {
 
   function itemRequestAccept(request, item) {
     vm.request = request;
-    vm.request.status = 'accepted'
+    vm.request.status = 'accepted';
     vm.request
       .$update()
       .then(() => console.log(vm.request));
@@ -235,7 +246,7 @@ function ReceivedRequestsCtrl(User, Request, Item, $auth) {
 
   function itemRequestReject(request) {
     vm.request = request;
-    vm.request.status = 'rejected'
+    vm.request.status = 'rejected';
     vm.request
       .$update()
       .then(() => console.log(vm.request));

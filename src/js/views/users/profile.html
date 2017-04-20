@@ -7,7 +7,7 @@
 <div ng-repeat="item in usersShow.user.items">
   <div class="row item">
     <div class="image col-sm-5">
-      <img ng-src="{{ item.image_src }}" alt="{{ item.name }}">
+      <img ng-src="{{ item.image.url }}" alt="{{ item.name }}">
     </div>
     <div class="col-sm-7 info">
       <h3><a ui-sref="itemsShow({ id: item.id })">{{ item.name }}</a></h3>

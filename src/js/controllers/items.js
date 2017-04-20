@@ -12,7 +12,7 @@ function ItemsIndexCtrl(Item, filterFilter, $scope) {
   vm.all = Item.query();
 
   function filterItem() {
-    vm.filtered = filterFilter(vm.all, vm.q)
+    vm.filtered = filterFilter(vm.all, vm.q);
   }
   $scope.$watch(() => vm.q, filterItem);
 
@@ -45,6 +45,7 @@ function ItemsShowCtrl(Item, User, Comment, Request, $stateParams, $state, $auth
   vm.request = {};
 
   function itemDelete() {
+    vm.item.comments = [];
     vm.item
       .$remove()
       .then(() => $state.go('itemsIndex'));

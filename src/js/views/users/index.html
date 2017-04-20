@@ -12,5 +12,7 @@
     <p ng-if="usersIndex.isFriend(user)">You are Friends!</p>
     <p ng-if="usersIndex.requested(user)">Requested!</p>
     <button type="button" ng-click="usersIndex.requestFriend(user)" ng-if="!usersIndex.isFriend(user) && !usersIndex.requested(user)">Add Friend</button>
+    <button type="button" ng-click="usersIndex.mutualFriends(user)">Mutual Friends</button>
+
   </div>
 </div>

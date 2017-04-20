@@ -9,6 +9,7 @@ function User($resource, API_URL) {
     requestFriend: { method: 'POST', url: `${API_URL}/requestfriend`},
     acceptFriend: { method: 'PUT', url: `${API_URL}/acceptfriend`},
     declineFriend: { method: 'PUT', url: `${API_URL}/declinefriend`},
-    removeFriend: { method: 'PUT', url: `${API_URL}/removefriend`}
+    removeFriend: { method: 'PUT', url: `${API_URL}/removefriend`},
+    mutualFriends: { method: 'GET', url: `${API_URL}/mutualfriends`}
   });
 }

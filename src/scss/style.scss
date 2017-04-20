@@ -66,6 +66,10 @@ body {
         @extend .category;
         background-color: orange;
       }
+      .Games\/Party {
+        @extend .category;
+        background-color: deeppink;
+      }
     }
     img {
       max-height: 200px;
