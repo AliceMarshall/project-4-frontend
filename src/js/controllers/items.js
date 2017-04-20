@@ -5,11 +5,18 @@ angular
   .controller('ItemsShowCtrl', ItemsShowCtrl)
   .controller('ItemsEditCtrl', ItemsEditCtrl);
 
-ItemsIndexCtrl.$inject = ['Item'];
-function ItemsIndexCtrl(Item) {
+ItemsIndexCtrl.$inject = ['Item', 'filterFilter', '$scope'];
+function ItemsIndexCtrl(Item, filterFilter, $scope) {
   const vm = this;
 
   vm.all = Item.query();
+
+  function filterItem() {
+    vm.filtered = filterFilter(vm.all, vm.q)
+  }
+  $scope.$watch(() => vm.q, filterItem);
+
+  filterItem();
 }
 
 ItemsNewCtrl.$inject = ['Item', 'User', 'Category', '$state'];

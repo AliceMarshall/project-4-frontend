@@ -1,5 +1,7 @@
 <h2>Sent Requests</h2>
 
+<h4 ng-if="sentRequests.requests.length === 0">You have no sent requests</h4>
+
 <div ng-repeat="request in sentRequests.requests" >
   <div class="row item">
     <div class="image col-sm-5">

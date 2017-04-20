@@ -1,6 +1,9 @@
 <h2>Items Index</h2>
+
+<input type="text" class="search" ng-model="itemsIndex.q" placeholder="Search items...">
+
 <div class="row">
-  <div ng-repeat="item in itemsIndex.all" class="col-sm-6 col-md-4">
+  <div ng-repeat="item in itemsIndex.filtered" class="col-sm-6 col-md-4">
     <h4><a ui-sref="itemsShow({ id: item.id })">{{ item.name }}</a></h4>
     <div class="category {{ item.category.name }}"></div>
     <div class="image-div">
