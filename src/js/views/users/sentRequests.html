@@ -5,7 +5,7 @@
 <div ng-repeat="request in sentRequests.requests" >
   <div class="row item">
     <div class="image col-sm-5">
-      <img ng-src="{{ request.item.image }}" alt="{{ request.item.name }}">
+      <img ng-src="{{ request.item.image_src }}" alt="{{ request.item.name }}">
     </div>
     <div class="col-sm-7 info">
       <h3><a ui-sref="itemsShow({ id: item.id })">{{ request.item.name }}</a></h3>

@@ -3,7 +3,7 @@
   <div ng-repeat="user in usersIndex.all" class="col-sm-6 col-md-4" ng-if="user.id !== main.currentUser.id">
     <h4>{{ user.full_name }}</h4>
     <div class="image-div">
-      <img ng-src="{{ user.profile_image }}" alt="{{ user.full_name }}">
+      <img ng-src="{{ user.image_src }}" alt="{{ user.full_name }}">
     </div>
     <h5>Friends:</h5>
     <ul>
