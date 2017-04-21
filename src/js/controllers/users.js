@@ -43,17 +43,6 @@ function UsersIndexCtrl(User, $auth) {
   }
   vm.requested = requested;
 
-  function mutualFriends(user) {
-    User
-      .mutualFriends({ friend_id: user.id })
-      .$promise
-      .then((friends) => {
-        vm.currentUser = User.get({ id: $auth.getPayload().id });
-        console.log(friends);
-      });
-  }
-  vm.mutualFriends = mutualFriends;
-
 }
 
 UsersFriendsCtrl.$inject = ['User', '$auth'];
@@ -121,13 +110,15 @@ function UsersShowCtrl(User, $auth, $state) {
 
   vm.user = User.get({ id: $auth.getPayload().id });
   console.log(vm.user);
-  // function itemDelete() {
+
+  // function userDelete() {
+  //   $auth.logout();
   //   vm.user
   //     .$remove()
-  //     .then(() => $state.go('itemsIndex'));
+  //     .then(() => $state.go('home'));
   // }
-
-  // vm.delete = itemDelete;
+  //
+  // vm.delete = userDelete;
 }
 
 SentRequestsCtrl.$inject = ['User', 'Request', 'Item', '$auth', '$state'];

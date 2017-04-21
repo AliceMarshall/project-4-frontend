@@ -22,7 +22,7 @@ function ItemsIndexCtrl(Item, User, filterFilter, $scope, $auth) {
           .query()
           .$promise
           .then((items) => {
-            // console.log('everything', items);
+            console.log('everything', items);
             items.forEach((item) => {
               if (item.available && item.friend_level === 'friends') {
                 item.user.friends.forEach((user) => {

@@ -1,18 +1,13 @@
 <h2>Users Index</h2>
 <div class="row">
-  <div ng-repeat="user in usersIndex.all" class="col-sm-6 col-md-4" ng-if="user.id !== main.currentUser.id">
+  <div ng-repeat="user in usersIndex.all" class="col-sm-6 col-md-3 text-center" ng-if="user.id !== main.currentUser.id">
     <h4>{{ user.full_name }}</h4>
     <div class="image-div">
       <img ng-src="{{ user.image_src }}" alt="{{ user.full_name }}">
     </div>
-    <h5>Friends:</h5>
-    <ul>
-      <li ng-repeat="friend in user.friends">{{ friend.full_name }}</li>
-    </ul>
     <p ng-if="usersIndex.isFriend(user)">You are Friends!</p>
     <p ng-if="usersIndex.requested(user)">Requested!</p>
     <button type="button" ng-click="usersIndex.requestFriend(user)" ng-if="!usersIndex.isFriend(user) && !usersIndex.requested(user)">Add Friend</button>
-    <button type="button" ng-click="usersIndex.mutualFriends(user)">Mutual Friends</button>
 
   </div>
 </div>

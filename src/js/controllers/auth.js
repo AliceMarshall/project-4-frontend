@@ -26,10 +26,18 @@ function LoginCtrl($auth, $state) {
 
   vm.login = login;
 
-  // function authenticate(provider) {
-  //   $auth.authenticate(provider)
-  //     .then(user => console.log(user));
-  // }
-  //
-  // vm.authenticate = authenticate;
+  function authenticate(provider) {
+   $auth.authenticate(provider)
+     .then(() => $state.go('usersShow'));
+    //  .then((user) => {
+    //   //  console.log(user);
+    //   //  if (!user.data.user.name || !user.data.user.username || !user.data.user.email || !user.data.user.image_src) {
+    //   //    $state.go('usersEdit', {id: user.data.user.id });
+    //   //  } else {
+    //      $state.go('usersIndex');
+    //   //  }
+    //  });
+ }
+
+ vm.authenticate = authenticate;
 }
