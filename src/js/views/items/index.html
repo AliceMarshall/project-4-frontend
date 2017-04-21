@@ -1,6 +1,7 @@
 <h2>Items Index</h2>
 
 <input type="text" class="search" ng-model="itemsIndex.q" placeholder="Search items...">
+<button type="button" class="btn" ng-click="itemsIndex.toggleItemFriendLevel()">Friends</button>
 
 <div class="row">
   <div ng-repeat="item in itemsIndex.filtered" class="col-sm-6 col-md-4">

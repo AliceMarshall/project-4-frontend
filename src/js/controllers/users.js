@@ -47,8 +47,9 @@ function UsersIndexCtrl(User, $auth) {
     User
       .mutualFriends({ friend_id: user.id })
       .$promise
-      .then((friend) => {
+      .then((friends) => {
         vm.currentUser = User.get({ id: $auth.getPayload().id });
+        console.log(friends);
       });
   }
   vm.mutualFriends = mutualFriends;

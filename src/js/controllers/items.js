@@ -5,11 +5,39 @@ angular
   .controller('ItemsShowCtrl', ItemsShowCtrl)
   .controller('ItemsEditCtrl', ItemsEditCtrl);
 
-ItemsIndexCtrl.$inject = ['Item', 'filterFilter', '$scope'];
-function ItemsIndexCtrl(Item, filterFilter, $scope) {
+ItemsIndexCtrl.$inject = ['Item', 'User', 'filterFilter', '$scope', '$auth'];
+function ItemsIndexCtrl(Item, User, filterFilter, $scope, $auth) {
   const vm = this;
 
-  vm.all = Item.query();
+  vm.all = [];
+  vm.currentUser = null;
+
+  function getUserItems() {
+    User
+      .get({ id: $auth.getPayload().id })
+      .$promise
+      .then((user) => {
+        vm.currentUser = user;
+        Item
+          .query()
+          .$promise
+          .then((items) => {
+            // console.log('everything', items);
+            items.forEach((item) => {
+              if (item.available && item.friend_level === 'friends') {
+                item.user.friends.forEach((user) => {
+                  if (user.id === vm.currentUser.id) {
+                    vm.all.push(item);
+                  }
+                });
+              } else if (item.available && item.friend_level === 'everything') {
+                vm.all.push(item);
+              }
+            });
+          });
+        });
+  }
+  getUserItems();
 
   function filterItem() {
     vm.filtered = filterFilter(vm.all, vm.q);
