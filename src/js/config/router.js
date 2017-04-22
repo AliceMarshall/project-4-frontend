@@ -46,11 +46,11 @@ function Router($urlRouterProvider, $locationProvider, $stateProvider) {
       templateUrl: 'js/views/users/profile.html',
       controller: 'UsersShowCtrl as usersShow'
     })
-    // .state('usersItems', {
-    //   url: '/users/:id/items',
-    //   templateUrl: 'js/views/users/items.html',
-    //   controller: 'UsersItemsCtrl as usersItems'
-    // })
+    .state('usersEdit', {
+      url: '/profile/edit',
+      templateUrl: 'js/views/users/edit.html',
+      controller: 'UsersEditCtrl as usersEdit'
+    })
     .state('usersFriends', {
       url: '/profile/friends',
       templateUrl: 'js/views/users/friends.html',

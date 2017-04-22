@@ -5,7 +5,7 @@
   </div>
   <div class="col-sm-7 info">
     <h2>{{ itemsShow.item.name }}</h2>
-    <h4>Owner: {{ itemsShow.item.user.username }}</h4>
+    <h4>Owner: {{ itemsShow.item.user.full_name }}</h4>
     <h4>Information</h4>
     <p>{{ itemsShow.item.instructions }}</p>
     <h5 ng-if="itemsShow.item.available">Status: Available</h5>
@@ -18,8 +18,7 @@
 
     <button ng-if="itemsShow.item.user.id !== main.currentUser.id" ng-click="itemsShow.makeRequest()" class="btn">Request to Borrow</button>
 
-
-    <a ng-if="itemsShow.item.user.id !== main.currentUser.id" ng-click="" class="btn">Questions about item?</a>
+    <a href="mailto:{{ itemsShow.item.user.email }}" ng-if="itemsShow.item.user.id !== main.currentUser.id">Questions about item? Email Owner</a>
   </div>
 </div>
 <h2>Comments</h2>

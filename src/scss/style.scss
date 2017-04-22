@@ -7,7 +7,7 @@ $mainfont: #2F3B4B;
 $mainback: #FFFDFB;
 $maingreen: #d9ffcc;
 $white: honeydew;
-$brightorange: #FF5B02;
+$brightorange: #F95800;
 
 // -----     styles
 
@@ -96,10 +96,11 @@ body {
             margin-top: 5px;
             height: 30px;
             width: 30px;
-            border: 2.5px solid $brightorange;
+            border: 2.5px solid white;
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
+            border-radius: 50%;
           }
           &.menu {
             color: white;

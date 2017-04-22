@@ -41,6 +41,7 @@ function ItemsIndexCtrl(Item, User, Category, filterFilter, $scope, $auth) {
                 checkItem(vm.all, item);
               }
               filterItem();
+              // filterUsers();
             });
           });
         });
@@ -56,13 +57,21 @@ function ItemsIndexCtrl(Item, User, Category, filterFilter, $scope, $auth) {
     vm.filtered = filterFilter(vm.filtered, { category:  { id: vm.category } });
   }
 
+  // function filterUsers() {
+  //   const params = { full_name: vm.k };
+  //   vm.filtered = filterFilter(vm.all.user, params);
+  // }
+
   $scope.$watchGroup([
     () => vm.q,
     () => vm.all.$resolved,
     () => vm.category
   ], filterItem);
 
+  // $scope.$watch(() => vm.k, filterUsers);
+
   filterItem();
+  // filterUsers();
 }
 
 ItemsNewCtrl.$inject = ['Item', 'User', 'Category', '$state'];

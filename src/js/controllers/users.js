@@ -3,13 +3,14 @@ angular
   .controller('UsersIndexCtrl', UsersIndexCtrl)
   .controller('UsersFriendsCtrl', UsersFriendsCtrl)
   .controller('UsersShowCtrl', UsersShowCtrl)
+  .controller('UsersEditCtrl', UsersEditCtrl)
   .controller('SentRequestsCtrl', SentRequestsCtrl)
   .controller('ReceivedRequestsCtrl', ReceivedRequestsCtrl);
 
   // .controller('UsersEditCtrl', UsersEditCtrl);
 
-UsersIndexCtrl.$inject = ['User', '$auth'];
-function UsersIndexCtrl(User, $auth) {
+UsersIndexCtrl.$inject = ['User', 'filterFilter', '$auth', '$scope'];
+function UsersIndexCtrl(User, filterFilter, $auth, $scope) {
   const vm = this;
 
   vm.all = User.query();
@@ -42,6 +43,18 @@ function UsersIndexCtrl(User, $auth) {
     }
   }
   vm.requested = requested;
+
+  function filterUsers() {
+    const params = { full_name: vm.q };
+    vm.filtered = filterFilter(vm.all, params);
+  }
+
+  $scope.$watchGroup([
+    () => vm.q,
+    () => vm.all.$resolved,
+  ], filterUsers);
+
+  filterUsers();
 
 }
 
@@ -247,19 +260,18 @@ function ReceivedRequestsCtrl(User, Request, Item, $auth) {
 
 }
 
-//
-// UsersEditCtrl.$inject = ['User', 'User', '$stateParams', '$state'];
-// function UsersEditCtrl(User, User, $stateParams, $state) {
-//   const vm = this;
-//
-//   vm.item = User.get($stateParams);
-//   vm.users = User.query();
-//
-//   function itemUpdate() {
-//     vm.item
-//       .$update()
-//       .then(() => $state.go('itemsShow', $stateParams));
-//   }
-//
-//   vm.update = itemUpdate;
-// }
+
+UsersEditCtrl.$inject = ['User', '$state', '$auth'];
+function UsersEditCtrl(User, $state, $auth) {
+  const vm = this;
+
+  vm.user = User.get({ id: $auth.getPayload().id });
+
+  function userUpdate() {
+    vm.user
+      .$update()
+      .then(() => $state.go('usersShow'));
+  }
+
+  vm.update = userUpdate;
+}
