@@ -77,6 +77,6 @@ function Router($urlRouterProvider, $locationProvider, $stateProvider) {
       controller: 'LoginCtrl as login'
     });
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/home');
 
 }

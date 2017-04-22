@@ -1,7 +1,13 @@
 <h2>Items Index</h2>
 
 <input type="text" class="search" ng-model="itemsIndex.q" placeholder="Search items...">
-<button type="button" class="btn" ng-click="itemsIndex.toggleItemFriendLevel()">Friends</button>
+<div class="form-group">
+  <label>Category</label><br>
+  <select class="select" ng-model="itemsIndex.category">
+    <option selected value="">All</option>
+    <option ng-repeat="category in itemsIndex.categories" ng-value="{{ category.id }}">{{ category.name }}</option>
+  </select>
+</div>
 
 <div class="row">
   <div ng-repeat="item in itemsIndex.filtered" class="col-sm-6 col-md-4">

@@ -1,9 +1,14 @@
 <h1>{{ usersShow.user.full_name }}</h1>
-<h1>{{ usersShow.user.username }}</h1>
-<a ui-sref="usersFriends">Friends</a>
-<a ui-sref="sentRequests">Sent Requests</a>
-<a ui-sref="receivedRequests">Received Requests</a>
-
+<div class="row">
+  <div class="col-sm-4">
+    <div ng-style="{'background-image': 'url(' + usersShow.user.image_src + ')'}" class="profile"></div>
+  </div>
+  <div class="col-sm-8">
+    <a ui-sref="usersFriends">Friends</a><br>
+    <a ui-sref="sentRequests">Sent Requests</a><br>
+    <a ui-sref="receivedRequests">Received Requests</a><br>
+  </div>
+</div>
 
 <div ng-repeat="item in usersShow.user.items">
   <div class="row item">

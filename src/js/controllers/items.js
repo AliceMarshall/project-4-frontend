@@ -5,12 +5,19 @@ angular
   .controller('ItemsShowCtrl', ItemsShowCtrl)
   .controller('ItemsEditCtrl', ItemsEditCtrl);
 
-ItemsIndexCtrl.$inject = ['Item', 'User', 'filterFilter', '$scope', '$auth'];
-function ItemsIndexCtrl(Item, User, filterFilter, $scope, $auth) {
+ItemsIndexCtrl.$inject = ['Item', 'User', 'Category', 'filterFilter', '$scope', '$auth'];
+function ItemsIndexCtrl(Item, User, Category, filterFilter, $scope, $auth) {
   const vm = this;
 
   vm.all = [];
   vm.currentUser = null;
+
+  function checkItem(allItems, item) {
+    const found = allItems.some((theItem) => item.id === theItem.id);
+    if (!found) {
+      allItems.push(item);
+    }
+  }
 
   function getUserItems() {
     User
@@ -27,22 +34,33 @@ function ItemsIndexCtrl(Item, User, filterFilter, $scope, $auth) {
               if (item.available && item.friend_level === 'friends') {
                 item.user.friends.forEach((user) => {
                   if (user.id === vm.currentUser.id) {
-                    vm.all.push(item);
+                    checkItem(vm.all, item);
                   }
                 });
               } else if (item.available && item.friend_level === 'everything') {
-                vm.all.push(item);
+                checkItem(vm.all, item);
               }
+              filterItem();
             });
           });
         });
   }
   getUserItems();
 
+  vm.category = '';
+  vm.categories = Category.query();
+
   function filterItem() {
-    vm.filtered = filterFilter(vm.all, vm.q);
+    const params = { name: vm.q };
+    vm.filtered = filterFilter(vm.all, params);
+    vm.filtered = filterFilter(vm.filtered, { category:  { id: vm.category } });
   }
-  $scope.$watch(() => vm.q, filterItem);
+
+  $scope.$watchGroup([
+    () => vm.q,
+    () => vm.all.$resolved,
+    () => vm.category
+  ], filterItem);
 
   filterItem();
 }

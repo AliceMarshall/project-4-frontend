@@ -2,8 +2,8 @@ angular
   .module('borrowApp')
   .controller('MainCtrl', MainCtrl);
 
-MainCtrl.$inject = ['$rootScope', '$state', '$auth'];
-function MainCtrl($rootScope, $state, $auth) {
+MainCtrl.$inject = ['User', '$rootScope', '$state', '$auth'];
+function MainCtrl(User, $rootScope, $state, $auth) {
   const vm = this;
   vm.isAuthenticated = $auth.isAuthenticated;
 
@@ -18,7 +18,7 @@ function MainCtrl($rootScope, $state, $auth) {
     if(!vm.stateHasChanged) vm.stateHasChanged = true;
     if($auth.getPayload()) vm.currentUser = $auth.getPayload();
   });
-  
+
   const protectedStates = ['itemsNew', 'itemsEdit'];
 
   $rootScope.$on('$stateChangeStart', (e, toState) => {
@@ -36,4 +36,5 @@ function MainCtrl($rootScope, $state, $auth) {
   }
 
   vm.logout = logout;
+
 }

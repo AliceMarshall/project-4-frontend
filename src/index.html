@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <link rel="icon" href="../images/spade.png" type="image/x-icon" />
     <title>Community Chest</title>
-    <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet">
+    <script src="https://use.fontawesome.com/cb62cfe9af.js"></script>
     <!-- inject:js -->
     <!-- endinject -->
     <!-- inject:css -->
@@ -13,17 +14,19 @@
   </head>
   <body ng-controller="MainCtrl as main" ng-class="main.pageName">
     <header>
-      <nav>
-        <ul>
-          <li ng-if="main.isAuthenticated()"><a ui-sref="itemsIndex" ui-sref-active="active">Items</a></li>
-          <li ng-if="main.isAuthenticated()"><a ui-sref="usersShow" ui-sref-active="active">Profile Page</a></li>
-          <li ng-if="main.isAuthenticated()"><a ui-sref="categoriesIndex" ui-sref-active="active">Categories</a></li>
-          <li ng-if="main.isAuthenticated()"><a ui-sref="usersIndex" ui-sref-active="active">Users</a></li>
-          <li ng-if="!main.isAuthenticated()"><a ui-sref="register" ui-sref-active="active">Register</a></li>
-          <li ng-if="main.isAuthenticated()"><a ng-click="main.logout()" ui-sref-active="active">Logout</a></li>
-          <li ng-if="!main.isAuthenticated()"><a ui-sref="login" ui-sref-active="active">Login</a></li>
-        </ul>
-      </nav>
+      <nav class="container">
+       <ul>
+         <li><a ui-sref="home" ui-sref-active="active">CC</a></li>
+         <li ng-if="main.isAuthenticated()"><div class="profilePic" ng-controller="UsersShowCtrl as usersShow" ng-style="{'background-image': 'url(' + usersShow.user.image_src + ')'}"></div></li>
+         <li ng-if="main.isAuthenticated()"><a ui-sref="itemsIndex" ui-sref-active="active">Items</a></li>
+         <li ng-if="main.isAuthenticated()"><a ui-sref="usersShow" ui-sref-active="active">Profile Page</a></li>
+         <li ng-if="main.isAuthenticated()"><a ui-sref="categoriesIndex" ui-sref-active="active">Categories</a></li>
+         <li ng-if="main.isAuthenticated()"><a ui-sref="usersIndex" ui-sref-active="active">Users</a></li>
+         <li ng-if="!main.isAuthenticated()"><a ui-sref="register" ui-sref-active="active">Register</a></li>
+         <li ng-if="!main.isAuthenticated()"><a ui-sref="login" ui-sref-active="active">Login</a></li>
+         <li ng-if="main.isAuthenticated()"><a ng-click="main.logout()" ui-sref-active="active">Logout</a></li>
+       </ul>
+     </nav>
     </header>
     <main ui-view class="container"></main>
   </body>
