@@ -139,7 +139,7 @@ function SentRequestsCtrl(User, Request, Item, $auth, $state) {
   const vm = this;
 
   vm.currentUser = [];
-  vm.user = User.query();
+  vm.users = User.query();
 
   function getUser() {
     User
@@ -152,6 +152,21 @@ function SentRequestsCtrl(User, Request, Item, $auth, $state) {
   }
   getUser();
 
+  // function itemsRequests() {
+  //   Request
+  //     .get({ id: $auth.getPayload().id })
+  //     .$promise
+  //     .then((response) => {
+  //       vm.pending = [];
+  //       vm.currentUser = response;
+  //       response.friendships.forEach((arr) => {
+  //         if (arr.status === 'requested') {
+  //           vm.pending.push(User.get({ id: arr.friend_id }));
+  //         }
+  //       });
+  //     });
+  // }
+
   function getRequests() {
     Request
       .query()
@@ -162,17 +177,22 @@ function SentRequestsCtrl(User, Request, Item, $auth, $state) {
           if (arr.borrower_id === vm.currentUser.id) {
             vm.requests.push(arr);
           }
+          findOwner(arr);
         });
-        findOwner();
       });
   }
 
-  function findOwner() {
+  function findOwner(arr) {
     User
       .query()
       .$promise
       .then((response) => {
         vm.users = response;
+        vm.users.find((user) => {
+          if (user.id === arr.owner_id) {
+            vm.owner = user;
+          }
+        });
       });
   }
 
@@ -180,7 +200,7 @@ function SentRequestsCtrl(User, Request, Item, $auth, $state) {
     vm.request = request;
     vm.request
       .$remove()
-      .then(() => $state.go('usersShow'));
+      .then((result) => getRequests());
   }
   vm.cancelRequest = cancelRequest;
 
@@ -192,7 +212,7 @@ function ReceivedRequestsCtrl(User, Request, Item, $auth) {
   const vm = this;
 
   vm.currentUser = [];
-  vm.user = User.query();
+  // vm.user = User.query();
   vm.items = Item.query();
 
   function getUser() {
@@ -216,17 +236,22 @@ function ReceivedRequestsCtrl(User, Request, Item, $auth) {
           if (arr.owner_id === vm.currentUser.id && arr.status !== 'remove') {
             vm.requests.push(arr);
           }
+          findBorrower(arr);
         });
-        findBorrower();
       });
   }
 
-  function findBorrower() {
+  function findBorrower(arr) {
     User
       .query()
       .$promise
-      .then((response) => {
-        vm.users = response;
+      .then((users) => {
+        vm.users = users;
+        vm.users.find((user) => {
+          if (user.id === arr.borrower_id) {
+            vm.borrower = user;
+          }
+        });
       });
   }
 

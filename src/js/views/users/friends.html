@@ -15,13 +15,13 @@
 
 <h2>Pending Friends</h2>
 
-<h4 ng-if="usersFriends.pending.length === 0">You currently have no pending requests</h4>
+<h4 ng-if="usersFriends.pending.length === 0">You currently have no pending friend requests</h4>
 
 <div>
   <div class="row item">
     <div class="image col-sm-3" ng-repeat="pending in usersFriends.pending">
       <h4>{{ pending.full_name }}</h4>
-      <img ng-src="{{ pending.image_src }}" alt="{{ friend.full_name }}">
+      <div ng-style="{'background-image': 'url(' + pending.image_src + ')'}" class="user-image"></div>
       <a ng-click="usersFriends.acceptFriend(pending)" class="button">Accept Friend Request</a>
       <a ng-click="usersFriends.declineFriend(pending)" class="button red">Decline Friend Request</a>
     </div>

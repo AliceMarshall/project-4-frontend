@@ -20,8 +20,8 @@
 
 <div class="row">
   <div ng-repeat="item in itemsIndex.filtered" class="col-sm-3 item">
-    <h4><a ui-sref="itemsShow({ id: item.id })">{{ item.name }}</a></h4>
-    <div class="category {{ item.category.name }}"></div>
+    <div class="category {{ item.category.name }}"><h4><a ui-sref="itemsShow({ id: item.id })">{{ item.name }}</a></h4></div>
+
     <div class="image-div">
       <div ng-style="{'background-image': 'url(' + item.image_src + ')'}" class="item-image"></div>
     </div>

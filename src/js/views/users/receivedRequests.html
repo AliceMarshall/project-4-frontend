@@ -9,7 +9,7 @@
     </div>
     <div class="col-sm-7 info">
       <h3><a ui-sref="itemsShow({ id: item.id })">{{ request.item.name }}</a></h3>
-      <h4>Borrower: {{ receivedRequests.users[request.borrower_id - 1].full_name }}</h4>
+      <h4>Borrower: {{ receivedRequests.borrower.full_name }}</h4>
       <h5>Status: {{ request.status }}</h5>
       <button class="btn" ng-click="receivedRequests.itemRequestAccept(request, request.item)">Accept Request</button>
       <button class="btn" ng-click="receivedRequests.itemRequestReject(request)">Deny Request</button>

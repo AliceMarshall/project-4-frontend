@@ -10,9 +10,14 @@ $brightorange: #F95800;
 // -----     styles
 
 .category {
-  height: 20px;
-  width: 20px;
-  border-radius: 10px;
+  height: 50px;
+  width: 115.5%;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  margin-left: -20px;
+  padding-top: 2px;
+  // padding-bottom: 10px;
+  // border-radius: 10px;
 }
 
 .heading-styles {
@@ -241,8 +246,34 @@ body {
         height: 40px;
       }
     }
+    .search-row {
+      margin: 20px 0;
+    }
+    .item {
+      margin: 20px 12px;
+      border: 2.5px solid $mainfont;
+      padding: 10px 20px;
+      // text-align: center;
+      min-height: 300px;
+      min-width: 300px;
+      a {
+        color: white;
+        &:hover {
+          color: $brightorange;
+          text-decoration: none;
+        }
+      }
+      .image-div {
+        .item-image {
+          min-height: 200px;
+          min-width: 100%;
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+      }
+    }
     div {
-
       .Garden {
         @extend .category;
         background-color: green;
@@ -251,6 +282,9 @@ body {
       .Kitchen\/Home {
         @extend .category;
         background-color: yellow;
+        a {
+          color: black;
+        }
       }
       .Sports {
         @extend .category;
@@ -267,33 +301,6 @@ body {
       .Games\/Party {
         @extend .category;
         background-color: deeppink;
-      }
-    }
-    .search-row {
-      margin: 20px 0;
-    }
-    .item {
-      margin: 20px 12px;
-      border: 2px solid $mainfont;
-      padding: 10px 20px;
-      // text-align: center;
-      min-height: 300px;
-      min-width: 300px;
-      a {
-        color: $mainfont;
-        &:hover {
-          color: $brightorange;
-          text-decoration: none;
-        }
-      }
-      .image-div {
-        .item-image {
-          min-height: 200px;
-          min-width: 100%;
-          background-position: center;
-          background-size: cover;
-          background-repeat: no-repeat;
-        }
       }
     }
   }
@@ -366,11 +373,56 @@ body {
   &.usersIndex {
     @extend .container-styles;
     @extend .heading-styles;
-    .row {
-      margin: 0 auto;
-      img {
-        max-height: 200px;
-        max-width: 400px;
+    @extend .back-style;
+    h2 {
+      text-align: center;
+      padding-top: 25px;
+      padding-bottom: 30px;
+    }
+    .user-image {
+      min-height: 200px;
+      min-width: 100%;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    .item {
+      margin: 15px 0;
+      .image {
+        img {
+          max-width: 100%;
+          max-height: 300px;
+          margin: 10px 0;
+        }
+      }
+      .info {
+        p {
+          text-transform: none;
+          letter-spacing: 0.5px;
+          font-size: 16px;
+        }
+      }
+      .button {
+        font-family: 'Poppins', sans-serif;
+        display: block;
+        width: 100%;
+        text-align: center;
+        background-color: $mainfont;
+        color: white;
+        border-radius: 5px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        height: 40px;
+        padding-top: 10px;
+        border: none;
+        &:hover {
+          background-color: $brightorange;
+          text-decoration: none;
+        }
+        &.friend {
+          background-color: white;
+          color: $mainfont;
+        }
       }
     }
   }
@@ -491,6 +543,7 @@ body {
         color: white;
         border-radius: 5px;
         margin-top: 10px;
+        margin-bottom: 10px;
         height: 40px;
         padding-top: 10px;
         border: none;

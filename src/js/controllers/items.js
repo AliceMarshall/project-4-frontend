@@ -135,6 +135,22 @@ function ItemsShowCtrl(Item, User, Comment, Request, $stateParams, $state, $auth
   }
   vm.makeRequest = makeRequest;
 
+  function requested(request) {
+    Request
+      .query()
+      .$promise
+      .then((requests) => {
+        vm.requests = requests;
+        // vm.request.
+      });
+    // if (vm.currentUser.$resolved) {
+    //   return vm.currentUser.friendships.find((friendship) => {
+    //     return friendship.friend_id === user.id && (friendship.status === 'pending' || friendship.status === 'requested');
+    //   });
+    // }
+  }
+  vm.requested = requested;
+
   function editAvailable() {
     if (vm.item.available) {
       vm.item.available = false;
