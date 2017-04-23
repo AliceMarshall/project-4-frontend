@@ -16,16 +16,17 @@
     <header>
       <nav class="container">
        <ul>
-         <li><a ui-sref="home" ui-sref-active="active">CC</a></li>
-         <li ng-if="main.isAuthenticated()"><div class="profilePic" ng-controller="UsersShowCtrl as usersShow" ng-style="{'background-image': 'url(' + usersShow.user.image_src + ')'}"></div></li>
-         <li ng-if="main.isAuthenticated()"><a ui-sref="itemsIndex" ui-sref-active="active">Items</a></li>
-         <li ng-if="main.isAuthenticated()"><a ui-sref="usersShow" ui-sref-active="active">Profile Page</a></li>
-         <li ng-if="main.isAuthenticated()"><a ui-sref="categoriesIndex" ui-sref-active="active">Categories</a></li>
-         <li ng-if="main.isAuthenticated()"><a ui-sref="usersIndex" ui-sref-active="active">Users</a></li>
-         <li ng-if="!main.isAuthenticated()"><a ui-sref="register" ui-sref-active="active">Register</a></li>
-         <li ng-if="!main.isAuthenticated()"><a ui-sref="login" ui-sref-active="active">Login</a></li>
-         <li ng-if="main.isAuthenticated()"><a ng-click="main.logout()" ui-sref-active="active">Logout</a></li>
-       </ul>
+        <li class="menu-icon" ng-click="navIsOpen = !navIsOpen">CC <i class="fa fa-arrow-circle-down" aria-hidden="true"></i></li>
+        <li ng-if="main.isAuthenticated()" class="logout"><div class="profilePic" ng-controller="UsersShowCtrl as usersShow" ng-style="{'background-image': 'url(' + usersShow.user.image_src + ')'}"></div></li>
+        <li ng-if="main.isAuthenticated()"><a ng-click="main.logout()" ui-sref-active="active" class="logout">Logout</a></li>
+        <div class="dropdown" ng-class="{ 'open': navIsOpen }">
+          <li ng-if="main.isAuthenticated()"><a ui-sref="itemsIndex" ui-sref-active="active">Find Items</a></li>
+          <li ng-if="main.isAuthenticated()"><a ui-sref="usersShow" ui-sref-active="active">Profile Page</a></li>
+          <li ng-if="main.isAuthenticated()"><a ui-sref="usersIndex" ui-sref-active="active">Find Users</a></li>
+          <li ng-if="!main.isAuthenticated()"><a ui-sref="register" ui-sref-active="active">Register</a></li>
+          <li ng-if="!main.isAuthenticated()"><a ui-sref="login" ui-sref-active="active">Login</a></li>
+        </div>
+      </ul>
      </nav>
     </header>
     <main ui-view class="container"></main>

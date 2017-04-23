@@ -1,28 +1,26 @@
 <h1>{{ usersShow.user.full_name }}</h1>
+
 <div class="row">
-  <div class="col-sm-4">
-    <div ng-style="{'background-image': 'url(' + usersShow.user.image_src + ')'}" class="profile"></div>
-  </div>
-  <div class="col-sm-8">
-    <a ui-sref="usersEdit">Edit Profile</a><br>
-    <a ui-sref="itemsNew">Add a new Item</a><br>
-    <a ui-sref="usersFriends">Friends</a><br>
-    <a ui-sref="sentRequests">Sent Requests</a><br>
-    <a ui-sref="receivedRequests">Received Requests</a><br>
-  </div>
+  <ul>
+    <li><a ui-sref="usersEdit" class="button">Edit Profile</a></li>
+    <li><a ui-sref="itemsNew" class="button">Add a new Item</a></li>
+    <li><a ui-sref="usersFriends" class="button">Friends</a></li>
+    <li><a ui-sref="sentRequests" class="button">Sent Requests</a></li>
+    <li><a ui-sref="receivedRequests" class="button">Received Requests</a></li>
+  </ul>
 </div>
 
 <div ng-repeat="item in usersShow.user.items">
   <div class="row item">
-    <div class="image col-sm-5">
-      <img ng-src="{{ item.image.url }}" alt="{{ item.name }}">
+    <div class="image col-sm-4">
+      <div ng-style="{'background-image': 'url(' + item.image.url + ')'}" class="item-image"></div>
     </div>
-    <div class="col-sm-7 info">
+    <div class="col-sm-8 info">
       <h3><a ui-sref="itemsShow({ id: item.id })">{{ item.name }}</a></h3>
-      <h4>Information</h4>
-      <p>{{ item.instructions }}</p>
       <h5 ng-if="item.available">Status: Available</h5>
       <h5 ng-if="!item.available">Status: Unavailable</h5>
+      <h5 ng-if="item.friend_level === 'friends'">Lending Level: Friends</h5>
+      <h5 ng-if="item.friend_level === 'everyone'">Lending Level: Friends &amp; Mutual Friends</h5>
     </div>
   </div>
 </div>

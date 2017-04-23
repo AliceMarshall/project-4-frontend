@@ -28,16 +28,19 @@ function LoginCtrl($auth, $state) {
 
   function authenticate(provider) {
    $auth.authenticate(provider)
-    //  .then(() => $state.go('usersShow'));
      .then((user) => {
-        console.log(user);
-        if (!user.data.user.full_name || !user.data.user.username || !user.data.user.email || !user.data.user.image_src) {
-         $state.go('usersEdit', {id: user.data.user.id });
-        } else {
-         $state.go('usersShow');
-      //  }
-        }
-    });
+       console.log(user);
+      //  $state.go('usersShow');
+     });
+    //  .then((user) => {
+
+      //   if (!user.data.user.full_name || !user.data.user.username || !user.data.user.email || !user.data.user.image_src) {
+      //    $state.go('usersEdit', {id: user.data.user.id });
+      //   } else {
+      //    $state.go('usersShow');
+      // //  }
+      //   }
+    // });
  }
 
  vm.authenticate = authenticate;

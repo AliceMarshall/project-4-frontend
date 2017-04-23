@@ -1,38 +1,42 @@
-<a ui-sref="itemsIndex">Back</a>
+<br>
+<a ui-sref="itemsIndex" class="back" ng-if="itemsShow.item.user.id !== main.currentUser.id">Back</a>
+<a ui-sref="usersShow" class="back" ng-if="itemsShow.item.user.id === main.currentUser.id">Back</a>
+
+<h2>{{ itemsShow.item.name }}</h2>
+
+<h4 ng-if="itemsShow.item.user.id !== main.currentUser.id">Owner: {{ itemsShow.item.user.full_name }}</h4>
+<h4>Information</h4>
+<p>{{ itemsShow.item.instructions }}</p>
+
 <div class="row item">
-  <div class="image col-sm-5">
+  <div class="image col-sm-8">
     <img ng-src="{{ itemsShow.item.image_src }}" alt="{{ itemsShow.item.name }}">
   </div>
-  <div class="col-sm-7 info">
-    <h2>{{ itemsShow.item.name }}</h2>
-    <h4>Owner: {{ itemsShow.item.user.full_name }}</h4>
-    <h4>Information</h4>
-    <p>{{ itemsShow.item.instructions }}</p>
+  <div class="col-sm-4 info">
     <h5 ng-if="itemsShow.item.available">Status: Available</h5>
     <h5 ng-if="!itemsShow.item.available">Status: Unavailable</h5>
 
-    <a ng-if="itemsShow.item.user.id === main.currentUser.id" ui-sref="itemsEdit({ id: itemsShow.item.id })" class="btn">Edit</a>
-    <button ng-if="itemsShow.item.user.id === main.currentUser.id" ng-click="itemsShow.delete()" class="btn">Delete</button>
-    <button ng-if="itemsShow.item.user.id === main.currentUser.id && itemsShow.item.available" ng-click="itemsShow.editAvailable()" class="btn">Make Item Unavailable</button>
-    <button ng-if="itemsShow.item.user.id === main.currentUser.id && !itemsShow.item.available" ng-click="itemsShow.editAvailable()" class="btn">Make Item Available</button>
+    <a ng-if="itemsShow.item.user.id === main.currentUser.id" ui-sref="itemsEdit({ id: itemsShow.item.id })" class="button">Edit</a>
+    <a ng-if="itemsShow.item.user.id === main.currentUser.id && itemsShow.item.available" ng-click="itemsShow.editAvailable()" class="button">Make Item Unavailable</a>
+    <a ng-if="itemsShow.item.user.id === main.currentUser.id && !itemsShow.item.available" ng-click="itemsShow.editAvailable()" class="button">Make Item Available</a>
+    <a ng-if="itemsShow.item.user.id === main.currentUser.id" ng-click="itemsShow.delete()" class="button red">Delete</a>
 
-    <button ng-if="itemsShow.item.user.id !== main.currentUser.id" ng-click="itemsShow.makeRequest()" class="btn">Request to Borrow</button>
 
-    <a href="mailto:{{ itemsShow.item.user.email }}" ng-if="itemsShow.item.user.id !== main.currentUser.id">Questions about item? Email Owner</a>
+    <a ng-if="itemsShow.item.user.id !== main.currentUser.id" ng-click="itemsShow.makeRequest()" class="button">Request to Borrow</a>
+
+    <a href="mailto:{{ itemsShow.item.user.email }}" ng-if="itemsShow.item.user.id !== main.currentUser.id" class="button email">Questions about item?<br> Email Owner</a>
   </div>
 </div>
-<h2>Comments</h2>
-<div class="row item">
-  <div class="col-sm-6">
-    <ul>
-      <li ng-repeat="comment in itemsShow.item.comments">{{ comment.body }} - <strong>{{ comment.user.username }}</strong><button ng-click="itemsShow.deleteComment(comment)" ng-if="main.isAuthenticated() && main.currentUser.id === comment.user.id">Delete</button></li>
-    </ul>
-  </div>
-  <div class="info col-sm-6" ng-if="main.isAuthenticated()">
-    <h4>Add Comment</h4>
-    <form ng-submit="itemsShow.addComment()">
-      <textarea type="text" name="body" rows="8" cols="50" ng-model="itemsShow.comment.body"></textarea>
-      <button>Create</button>
-    </form>
-  </div>
+<h2 class="comments">Comments</h2>
+<div ng-repeat="comment in itemsShow.item.comments">
+  <p><strong>{{ comment.user.full_name }}</strong> said on: <strong>{{ comment.created_at | date:"MM/dd/yyyy 'at' h:mma"}}</strong></p>
+  <p>&nbsp;&nbsp;&nbsp;{{ comment.body }}</p>
+  <a ng-click="itemsShow.deleteComment(comment)" ng-if="main.isAuthenticated() && main.currentUser.id === comment.user.id" class="button delete">Delete</a>
+</div>
+<div ng-if="main.isAuthenticated()">
+  <h4>Add Comment</h4>
+  <form ng-submit="itemsShow.addComment()">
+    <textarea type="text" name="body" rows="4" ng-model="itemsShow.comment.body" class="comment"></textarea>
+    <a class="button">Create</a>
+  </form>
 </div>

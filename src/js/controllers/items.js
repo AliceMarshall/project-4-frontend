@@ -31,17 +31,17 @@ function ItemsIndexCtrl(Item, User, Category, filterFilter, $scope, $auth) {
           .then((items) => {
             console.log('everything', items);
             items.forEach((item) => {
+              console.log(item);
               if (item.available && item.friend_level === 'friends') {
                 item.user.friends.forEach((user) => {
                   if (user.id === vm.currentUser.id) {
                     checkItem(vm.all, item);
                   }
                 });
-              } else if (item.available && item.friend_level === 'everything') {
+              } else if (item.available && item.friend_level === 'everyone') {
                 checkItem(vm.all, item);
               }
               filterItem();
-              // filterUsers();
             });
           });
         });
@@ -52,26 +52,18 @@ function ItemsIndexCtrl(Item, User, Category, filterFilter, $scope, $auth) {
   vm.categories = Category.query();
 
   function filterItem() {
-    const params = { name: vm.q };
+    const params = { name: vm.q, user: { full_name: vm.k }, category: { id: vm.category } };
     vm.filtered = filterFilter(vm.all, params);
-    vm.filtered = filterFilter(vm.filtered, { category:  { id: vm.category } });
   }
-
-  // function filterUsers() {
-  //   const params = { full_name: vm.k };
-  //   vm.filtered = filterFilter(vm.all.user, params);
-  // }
 
   $scope.$watchGroup([
     () => vm.q,
+    () => vm.k,
     () => vm.all.$resolved,
     () => vm.category
   ], filterItem);
 
-  // $scope.$watch(() => vm.k, filterUsers);
-
   filterItem();
-  // filterUsers();
 }
 
 ItemsNewCtrl.$inject = ['Item', 'User', 'Category', '$state'];

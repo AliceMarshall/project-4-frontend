@@ -1,12 +1,10 @@
 
-
-
 // -----     colours
 
 $mainfont: #2F3B4B;
 $mainback: #FFFDFB;
 $maingreen: #d9ffcc;
-$white: honeydew;
+$white: #FCFCFC;
 $brightorange: #F95800;
 
 // -----     styles
@@ -28,10 +26,18 @@ $brightorange: #F95800;
       background-color: white;
       margin: 0 auto;
       padding: 30px auto;
-      min-height: 785px;
+      // min-height: 785px;
       max-width: 1000px;
+      padding-bottom: 30px;
     }
   }
+}
+
+.centered-styles {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .login-styles {
@@ -58,10 +64,26 @@ $brightorange: #F95800;
   }
 }
 
+.back-style {
+  .back {
+    color: $brightorange;
+    &:hover {
+      color: $mainfont;
+      text-decoration: none;
+    }
+  }
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   color: $mainfont;
   background-color: $brightorange;
+  // background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)), url("../images/grass.jpg");
+  // background-position: center;
+  // background-size: cover;
+  // background-repeat: no-repeat;
+  // background-attachment: fixed;
+  margin-top: 90px;
 
   // -----     nav
 
@@ -70,81 +92,84 @@ body {
     left: 0;
     right: 0;
     z-index: 2;
-    height: 42px;
-    background-color: $mainfont;
-    transition: background-color 0.2s ease;
+    height: 90px;
+    background-color: $white;
+    position: fixed;
+    border-bottom: 4px solid $mainfont;
+    // transition: background-color 0.2s ease;
     nav {
+      text-align: center;
       max-width: 1000px;
       ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        li {
-          display: inline-block;
-          float: right;
-          margin-left: 20px;
-          line-height: 40px;
-          &:first-of-type {
-            margin-left: 0;
-            float: left;
-            font-size: 25px;
+        background-color: $white;
+        margin: 0 auto;
+        height: 90px;
+        padding: 0 20px !important;
+        border-bottom: 4px solid $mainfont;
+        .dropdown {
+          display: none;
+          background-color: $mainfont;
+          z-index: 3;
+          position: absolute;
+          top: 90px;
+          left: 0;
+          width: 100%;
+          padding: 20px;
+          padding-right: 0;
+          &.open {
+            display: block;
+            z-index: 3;
+            // transition: 0.2s ease-in-out;
           }
-          // &:last-of-type {
-          //   margin-right: 0;
-          // }
+        }
+        li {
+          margin: 0 auto;
+          display: inline;
+          list-style: none;
+          line-height: 50px;
+          text-align: left;
+          &.menu-icon {
+            display: block;
+            cursor: pointer;
+            position: absolute;
+            left:50%;
+            transform: translate(-50%);
+            color: $brightorange;
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 15px;
+            i {
+              text-align: center;
+              margin-top: -10px;
+            }
+          }
           .profilePic {
-            margin-top: 5px;
-            height: 30px;
-            width: 30px;
-            border: 2.5px solid white;
+            margin-top: 18px;
+            height: 40px;
+            width: 40px;
+            border: 2.5px solid $brightorange;
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
             border-radius: 50%;
+            float: right;
           }
-          &.menu {
-            color: white;
-            cursor: pointer;
-            display: none;
-            font-size: 20px;
+          .logout {
+            color: $brightorange;
+            float: right;
+            margin-top: 18px;
+            margin-right: -45px;
           }
           a {
+            font-family: inherit;
             color: white;
-            @extend .heading-styles;
-            font-weight: bold;
-            position: relative;
-            &:after {
-              content: "";
-              height: 2px;
-              width: 100%;
-              background-color: $brightorange;
-              position: absolute;
-              bottom: -4px;
-              left: 0;
-              opacity: 0;
-              transition: opacity 0.2s ease;
-              &:first-of-type {
-                content: "";
-                height: 0;
-                width: 0;
-                background-color: none;
-                position: absolute;
-                bottom: -4px;
-                left: 0;
-                opacity: 0;
-                transition: opacity 0.2s ease;
-              }
-            }
+            display: inline;
+            font-size: 18px;
+            z-index: 11;
+            padding-right: 50px;
+            padding-left: 50px;
             &:hover {
-              text-decoration: none;
               color: $brightorange;
-              &:after {
-                opacity: 0.8;
-                }
-              }
-            &.active {
-              color: $brightorange;
-              animation: none;
               text-decoration: none;
             }
           }
@@ -152,11 +177,20 @@ body {
       }
     }
   }
+//             &.active {
+//               color: $mainfont;
+//               animation: none;
+//               text-decoration: none;
+//             }
 
   // -----     home-page
 
   &.home {
     @extend .heading-styles;
+    h1 {
+      color: white;
+      @extend .centered-styles;
+    }
   }
 
   // -----     login
@@ -189,10 +223,30 @@ body {
   &.itemsIndex {
     @extend .container-styles;
     @extend .heading-styles;
+    text-align: center;
+    h2 {
+      padding-top: 40px;
+      padding-bottom: 40px;
+      text-align: center;
+    }
+    .col-sm-4 {
+      input{
+        width: 100%;
+        height: 40px;
+        outline: none;
+      }
+      select {
+        width: 100%;
+        background-color: white;
+        height: 40px;
+      }
+    }
     div {
+
       .Garden {
         @extend .category;
         background-color: green;
+        padding: 5px 0;
       }
       .Kitchen\/Home {
         @extend .category;
@@ -215,9 +269,32 @@ body {
         background-color: deeppink;
       }
     }
-    img {
-      max-height: 200px;
-      max-width: 400px;
+    .search-row {
+      margin: 20px 0;
+    }
+    .item {
+      margin: 20px 12px;
+      border: 2px solid $mainfont;
+      padding: 10px 20px;
+      // text-align: center;
+      min-height: 300px;
+      min-width: 300px;
+      a {
+        color: $mainfont;
+        &:hover {
+          color: $brightorange;
+          text-decoration: none;
+        }
+      }
+      .image-div {
+        .item-image {
+          min-height: 200px;
+          min-width: 100%;
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+      }
     }
   }
 
@@ -226,20 +303,60 @@ body {
   &.itemsShow {
     @extend .container-styles;
     @extend .heading-styles;
+    @extend .back-style;
+    h2 {
+      text-align: center;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      &.comments {
+        text-align: left;
+      }
+    }
+    p {
+      letter-spacing: 0.5px;
+      font-size: 16px;
+      text-transform: none;
+    }
+    textarea {
+      width: 100%
+    }
     .item {
       margin: 15px 0;
       .image {
         img {
-          max-width: 100%;
-          max-height: 300px;
+          width: 100%;
+          // max-height: 300px;
         }
       }
-      .info {
-        p {
-          text-transform: none;
-          letter-spacing: 0.5px;
-          font-size: 16px;
+    }
+    .button {
+      font-family: 'Poppins', sans-serif;
+      display: block;
+      width: 100%;
+      text-align: center;
+      background-color: $mainfont;
+      color: white;
+      border-radius: 5px;
+      margin-top: 10px;
+      height: 40px;
+      padding-top: 10px;
+      border: none;
+      &.email {
+        height: 60px;
+      }
+      &:hover {
+        background-color: $brightorange;
+        text-decoration: none;
+      }
+      &.red {
+        background-color: $brightorange;
+        &:hover {
+          background-color: $mainfont;
+          text-decoration: none;
         }
+      }
+      &.delete {
+        width: 200px;
       }
     }
   }
@@ -263,8 +380,50 @@ body {
   &.usersShow {
     @extend .container-styles;
     @extend .heading-styles;
+    h1 {
+      text-align: center;
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+    .row {
+      ul {
+        list-style: none;
+        text-align: center;
+        background-color: $mainfont;
+        padding: 5px 0;
+        margin-top: 10px;
+        margin-bottom: 30px;
+        li {
+          display: inline;
+          padding: 0 30px;
+          a {
+            color: white;
+            &:hover {
+              text-decoration: none;
+              color: $brightorange;
+            }
+          }
+        }
+      }
+      .item-image {
+        min-height: 200px;
+        min-width: 100%;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+    }
     .item {
       margin: 15px 0;
+      h3 {
+        a {
+          color: $mainfont;
+          &:hover {
+            color: $brightorange;
+            text-decoration: none;
+          }
+        }
+      }
       .image {
         text-align: center;
         img {
@@ -294,12 +453,26 @@ body {
   &.usersFriends {
     @extend .container-styles;
     @extend .heading-styles;
+    @extend .back-style;
+    h2 {
+      text-align: center;
+      padding-top: 25px;
+      padding-bottom: 30px;
+    }
+    .user-image {
+      min-height: 200px;
+      min-width: 100%;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
     .item {
       margin: 15px 0;
       .image {
         img {
           max-width: 100%;
-          max-height: 300px
+          max-height: 300px;
+          margin: 10px 0;
         }
       }
       .info {
@@ -307,6 +480,30 @@ body {
           text-transform: none;
           letter-spacing: 0.5px;
           font-size: 16px;
+        }
+      }
+      .button {
+        font-family: 'Poppins', sans-serif;
+        display: block;
+        width: 100%;
+        text-align: center;
+        background-color: $mainfont;
+        color: white;
+        border-radius: 5px;
+        margin-top: 10px;
+        height: 40px;
+        padding-top: 10px;
+        border: none;
+        &:hover {
+          background-color: $brightorange;
+          text-decoration: none;
+        }
+        &.red {
+          background-color: $brightorange;
+          &:hover {
+            background-color: $mainfont;
+            text-decoration: none;
+          }
         }
       }
     }
