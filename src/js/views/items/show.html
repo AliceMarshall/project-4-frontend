@@ -22,8 +22,8 @@
     <a ng-if="itemsShow.item.user.id === main.currentUser.id && !itemsShow.item.available" ng-click="itemsShow.editAvailable()" class="button">Make Item Available</a>
     <a ng-if="itemsShow.item.user.id === main.currentUser.id" ng-click="itemsShow.delete()" class="button red">Delete</a>
 
-    <p ng-if="itemsShow.requestedTrue">Requested!</p>
-    <p id="requestShow">Requested!</p>
+    <p ng-if="itemsShow.requestedTrue" class="requested">Requested!</p>
+    <p id="requestShow" class="requested">Requested!</p>
 
     <a ng-if="itemsShow.item.user.id !== main.currentUser.id && !itemsShow.requestedTrue" ng-click="itemsShow.makeRequest()" class="button" id="requestHide">Request to Borrow</a>
 
@@ -40,6 +40,6 @@
   <h4>Add Comment</h4>
   <form ng-submit="itemsShow.addComment()">
     <textarea type="text" name="body" rows="4" ng-model="itemsShow.comment.body" class="comment"></textarea>
-    <button class="button">Create</button>
+    <button class="button create">Create</button>
   </form>
 </div>

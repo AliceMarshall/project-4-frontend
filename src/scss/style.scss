@@ -14,9 +14,6 @@ $buttoncolor: #D5E8D4;
   height: 50px;
   padding-top: 4px;
   border: 3px solid $mainfont;
-  // width: 115.5%;
-  // padding-bottom: 10px;
-  // border-radius: 10px;
 }
 
 .heading-styles {
@@ -53,36 +50,13 @@ $buttoncolor: #D5E8D4;
   transform: translate(-50%, -50%);
 }
 
-.login-styles {
-  @extend .container-styles;
-  @extend .heading-styles;
-  h1 {
-    text-align: center;
-  }
-  .form {
-    max-width: 300px;
-    margin: 30px auto;
-    button {
-      width: 100%;
-      height: 36px;
-      background-color: $mainfont;
-      border: 1px solid $white;
-      border-radius: 4px;
-      margin-top: 10px;
-      color: white;
-      &:hover {
-        background-color: $brightorange;
-      }
-    }
-  }
-}
-
 .back-style {
   .back {
     color: $mainfont;
     background-color: $buttoncolor;
     padding: 1px 7px;
     border-radius: 4px;
+    font-weight: bold;
     &:hover {
       color: $mainfont;
       text-decoration: none;
@@ -117,6 +91,7 @@ $buttoncolor: #D5E8D4;
           text-align: center;
           padding: 6px 0;
           background-color: $buttoncolor;
+          margin-bottom: 20px;
           &:hover {
             cursor: pointer;
           }
@@ -289,16 +264,30 @@ body {
 
   &.home {
     @extend .heading-styles;
-    h1 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.25)), url('../images/shed.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    h2 {
       color: white;
+      text-align: center;
+      margin-top: -70px;
       @extend .centered-styles;
+      font-weight: normal;
+      text-transform: none;
     }
   }
 
   // -----     login
 
   &.login {
-    @extend .login-styles;
+    @extend .item-form;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.25)), url('../images/shed.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     button {
       &.git-button {
         background-color: white;
@@ -306,9 +295,11 @@ body {
         border: none;
         width: 100%;
         padding-top: 20px;
+        padding-bottom: 20px;
+        outline: none;
         &:hover {
           background-color: white;
-          color: $brightorange;
+          color: #9bc49f;
         }
       }
     }
@@ -317,12 +308,24 @@ body {
   // -----     register
 
   &.register {
-    @extend .login-styles;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.25)), url('../images/shed.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    @extend .item-form;
+  }
+
+  // -----     users-edit
+
+  &.usersEdit {
+    @extend .item-form;
   }
 
   // -----     items-index
 
   &.itemsIndex {
+    padding-bottom: 30px;
     @extend .container-styles;
     @extend .heading-styles;
     text-align: center;
@@ -408,6 +411,7 @@ body {
     @extend .heading-styles;
     @extend .back-style;
     @extend .h2-styles;
+    padding-bottom: 30px;
     h2 {
       &.comments {
         text-align: left;
@@ -430,6 +434,13 @@ body {
         }
       }
     }
+    .requested {
+      text-align: center;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      height: 40px;
+      padding-top: 10px;
+    }
     #requestShow {
       display: none;
     }
@@ -446,6 +457,10 @@ body {
       height: 40px;
       padding-top: 10px;
       border: none;
+      text-transform: uppercase;
+      &.create {
+        padding-bottom: 10px;
+      }
       &.email {
         height: 60px;
       }
@@ -460,17 +475,20 @@ body {
   // -----     items-new
 
   &.itemsNew {
+    padding-bottom: 30px;
     @extend .item-form;
   }
 
   // -----     items-edit
 
   &.itemsEdit {
+    padding-bottom: 30px;
     @extend .item-form;
   }
   // -----     users-index
 
   &.usersIndex {
+    padding-bottom: 30px;
     @extend .container-styles;
     @extend .heading-styles;
     @extend .back-style;
@@ -559,7 +577,7 @@ body {
             color: white;
             &:hover {
               text-decoration: none;
-              color: $brightorange;
+              color: $buttoncolor;
             }
           }
         }
@@ -578,7 +596,7 @@ body {
         a {
           color: $mainfont;
           &:hover {
-            color: $brightorange;
+            text-shadow: 4px 2px $buttoncolor;
             text-decoration: none;
           }
         }
@@ -610,6 +628,7 @@ body {
   // -----     users-friends
 
   &.usersFriends {
+    padding-bottom: 30px;
     @extend .container-styles;
     @extend .heading-styles;
     @extend .back-style;
@@ -668,6 +687,7 @@ body {
   // -----     sent-requests
 
   &.sentRequests {
+    padding-bottom: 30px;
     @extend .container-styles;
     @extend .heading-styles;
     @extend .back-style;
@@ -707,12 +727,22 @@ body {
   // -----     received-requests
 
   &.receivedRequests {
+    padding-bottom: 30px;
     @extend .container-styles;
     @extend .heading-styles;
     @extend .back-style;
     @extend .h2-styles;
     .item {
       margin: 15px 0;
+      h3 {
+        a {
+          color: $mainfont;
+          &:hover {
+            text-shadow: 4px 2px $buttoncolor;
+            text-decoration: none;
+          }
+        }
+      }
       .image {
         img {
           max-width: 100%;
@@ -725,6 +755,11 @@ body {
           letter-spacing: 0.5px;
           font-size: 16px;
         }
+      }
+      .btn {
+        background-color: $buttoncolor;
+        text-transform: uppercase;
+        font-weight: bold;
       }
     }
   }

@@ -16,7 +16,7 @@
       <h5>Status: {{ request.status }}</h5>
       <button class="btn" ng-click="receivedRequests.itemRequestAccept(request, request.item)">Accept Request</button>
       <button class="btn" ng-click="receivedRequests.itemRequestReject(request)">Deny Request</button>
-      <button class="btn" ng-click="">Contact {{ receivedRequests.users[request.borrower_id - 1].full_name }}</button>
+      <button class="btn" ng-click="">Contact Borrower</button>
     </div>
   </div>
 </div>
