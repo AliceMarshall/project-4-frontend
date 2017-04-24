@@ -100,6 +100,7 @@ function ItemsShowCtrl(Item, User, Comment, Request, $stateParams, $state, $auth
   vm.delete = itemDelete;
 
   function addComment() {
+    console.log('anything');
     vm.comment.item_id = vm.item.id;
     Comment
       .save({ comment: vm.comment })
