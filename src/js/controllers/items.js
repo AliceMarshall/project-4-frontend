@@ -155,7 +155,7 @@ function ItemsShowCtrl(Item, User, Comment, Request, $stateParams, $state, $auth
             .get($stateParams)
             .$promise
             .then((item) => {
-              vm.item = item
+              vm.item = item;
               if (request.borrower_id === vm.currentUser.id && request.item.id === vm.item.id) {
                 vm.requestedTrue = true;
                 console.log(vm.requestedTrue);
