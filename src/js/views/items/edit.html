@@ -1,40 +1,41 @@
-<h2>Edit {{ itemsEdit.item.name }}</h2>
-<div class="row">
-  <div class="col">
-    <form ng-submit="itemsEdit.update()">
-      <div class="form-group">
-        <label>Name</label>
-        <input ng-model="itemsEdit.item.name" type="text" class="form-control">
-      </div>
-      <div class="form-group">
-        <label>Instructions</label>
-        <input ng-model="itemsEdit.item.instructions" type="text" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="base64">Image</label>
-        <input ng-model="itemsEdit.item.base64" base64 name="base64" type="file" class="form-control">
-      </div>
-      <div class="form-group">
-        <label>Lending Level</label><br>
-        <label for="friendLevel">
-          <p>Just Friends</p>
-          <input class="text-center" type="radio" name="friendLevel" ng-model="itemsEdit.item.friend_level" value="friends">
-        </label>
-        <label for="friendLevel">
-          <p>Friends &amp; Mutual Friends</p>
-          <input type="radio" name="friendLevel" ng-model="itemsEdit.item.friend_level" value="everyone">
-        </label>
-      </div>
-      <div class="form-group">
-        <label>Category</label><br>
-        <select ng-model="itemsEdit.item.category_id" class="select">
-          <option disabled selected>Please select...</option>
-          <option ng-repeat="category in itemsEdit.categories" ng-value="{{ category.id }}">{{ category.name }}</option>
-        </select>
-      </div>
-      <div class="form-group form-btn">
-        <button class="btn">Submit</button>
-      </div>
-    </form>
+<div class="form">
+  <h2>Edit {{ itemsEdit.item.name }}</h2>
+  <div class="row">
+    <div class="col">
+      <form ng-submit="itemsEdit.update()">
+        <div class="form-group">
+          <label>Name</label>
+          <input ng-model="itemsEdit.item.name" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Instructions</label>
+          <textarea ng-model="itemsEdit.item.instructions" type="text" class="form-control"></textarea>
+        </div>
+        <div>
+          <label for="base64" class="imagebutton">Image</label>
+          <input ng-model="itemsEdit.item.base64" base64 name="base64" type="file" id="base64" class="image">
+        </div>
+        <div class="form-group">
+          <label>Lending Level</label><br>
+          <label for="friendLevel">
+            <input class="lending" type="radio" name="friendLevel" ng-model="itemsEdit.item.friend_level" value="friends"> <span class="lending-label"> Just Friends</span>
+          </label>
+          <br>
+          <label for="friendLevel">
+            <input class="lending" type="radio" name="friendLevel" ng-model="itemsEdit.item.friend_level" value="everyone"> <span class="lending-label"> Friends &amp; Mutual Friends</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Category</label><br>
+          <select ng-model="itemsEdit.item.category_id" class="select">
+            <option disabled>Please select...</option>
+            <option ng-repeat="category in itemsEdit.categories" ng-value="{{ category.id }}">{{ category.name }}</option>
+          </select>
+        </div>
+        <div class="form-group submit">
+          <button class="btn">Submit</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

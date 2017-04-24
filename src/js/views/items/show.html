@@ -5,14 +5,15 @@
 <h2>{{ itemsShow.item.name }}</h2>
 
 <h4 ng-if="itemsShow.item.user.id !== main.currentUser.id">Owner: {{ itemsShow.item.user.full_name }}</h4>
-<h4>Information</h4>
-<p>{{ itemsShow.item.instructions }}</p>
+
 
 <div class="row item">
   <div class="image col-sm-8">
     <img ng-src="{{ itemsShow.item.image_src }}" alt="{{ itemsShow.item.name }}">
   </div>
   <div class="col-sm-4 info">
+    <h4>Information</h4>
+    <p>{{ itemsShow.item.instructions }}</p>
     <h5 ng-if="itemsShow.item.available">Status: Available</h5>
     <h5 ng-if="!itemsShow.item.available">Status: Unavailable</h5>
 
@@ -21,15 +22,17 @@
     <a ng-if="itemsShow.item.user.id === main.currentUser.id && !itemsShow.item.available" ng-click="itemsShow.editAvailable()" class="button">Make Item Available</a>
     <a ng-if="itemsShow.item.user.id === main.currentUser.id" ng-click="itemsShow.delete()" class="button red">Delete</a>
 
+    <p ng-if="itemsShow.requestedTrue">Requested!</p>
+    <p id="requestShow">Requested!</p>
 
-    <a ng-if="itemsShow.item.user.id !== main.currentUser.id" ng-click="itemsShow.makeRequest()" class="button">Request to Borrow</a>
+    <a ng-if="itemsShow.item.user.id !== main.currentUser.id && !itemsShow.requestedTrue" ng-click="itemsShow.makeRequest()" class="button" id="requestHide">Request to Borrow</a>
 
     <a href="mailto:{{ itemsShow.item.user.email }}" ng-if="itemsShow.item.user.id !== main.currentUser.id" class="button email">Questions about item?<br> Email Owner</a>
   </div>
 </div>
 <h2 class="comments">Comments</h2>
 <div ng-repeat="comment in itemsShow.item.comments">
-  <p><strong>{{ comment.user.full_name }}</strong> said on: <strong>{{ comment.created_at | date:"MM/dd/yyyy 'at' h:mma"}}</strong></p>
+  <p><strong>{{ comment.user.full_name }}</strong> said on: <strong>{{ comment.created_at | date:"MMM dd, yy 'at' h:mma"}}</strong></p>
   <p>&nbsp;&nbsp;&nbsp;{{ comment.body }}</p>
   <a ng-click="itemsShow.deleteComment(comment)" ng-if="main.isAuthenticated() && main.currentUser.id === comment.user.id" class="button delete">Delete</a>
 </div>

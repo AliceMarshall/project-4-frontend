@@ -29,9 +29,7 @@ function ItemsIndexCtrl(Item, User, Category, filterFilter, $scope, $auth) {
           .query()
           .$promise
           .then((items) => {
-            console.log('everything', items);
             items.forEach((item) => {
-              console.log(item);
               if (item.available && item.friend_level === 'friends') {
                 item.user.friends.forEach((user) => {
                   if (user.id === vm.currentUser.id) {
@@ -88,8 +86,15 @@ function ItemsShowCtrl(Item, User, Comment, Request, $stateParams, $state, $auth
   const vm = this;
 
   if ($auth.getPayload()) vm.currentUser = User.get({ id: $auth.getPayload().id });
-  vm.item = Item.get($stateParams);
   vm.request = {};
+
+  function getItem() {
+    Item
+      .get($stateParams)
+      .$promise
+      .then((item) => vm.item = item);
+  }
+  getItem();
 
   function itemDelete() {
     vm.item.comments = [];
@@ -130,26 +135,36 @@ function ItemsShowCtrl(Item, User, Comment, Request, $stateParams, $state, $auth
     Request.save(vm.request)
       .$promise
       .then(() => {
-        console.log(vm.request);
+        const requestHide = document.getElementById('requestHide');
+        requestHide.style.display = 'none';
+        const requestShow = document.getElementById('requestShow');
+        requestShow.style.display = 'block';
       });
   }
   vm.makeRequest = makeRequest;
 
-  function requested(request) {
+  function requested() {
     Request
       .query()
       .$promise
       .then((requests) => {
+        console.log('requests',requests);
         vm.requests = requests;
-        // vm.request.
+        vm.requests.forEach((request) => {
+          Item
+            .get($stateParams)
+            .$promise
+            .then((item) => {
+              vm.item = item
+              if (request.borrower_id === vm.currentUser.id && request.item.id === vm.item.id) {
+                vm.requestedTrue = true;
+                console.log(vm.requestedTrue);
+              }
+          });
+        });
       });
-    // if (vm.currentUser.$resolved) {
-    //   return vm.currentUser.friendships.find((friendship) => {
-    //     return friendship.friend_id === user.id && (friendship.status === 'pending' || friendship.status === 'requested');
-    //   });
-    // }
   }
-  vm.requested = requested;
+  requested();
 
   function editAvailable() {
     if (vm.item.available) {

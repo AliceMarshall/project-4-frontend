@@ -6,16 +6,15 @@ $mainback: #FFFDFB;
 $maingreen: #d9ffcc;
 $white: #FCFCFC;
 $brightorange: #F95800;
+$buttoncolor: #D5E8D4;
 
 // -----     styles
 
 .category {
   height: 50px;
-  width: 115.5%;
-  margin-top: -10px;
-  margin-bottom: 20px;
-  margin-left: -20px;
-  padding-top: 2px;
+  padding-top: 4px;
+  border: 3px solid $mainfont;
+  // width: 115.5%;
   // padding-bottom: 10px;
   // border-radius: 10px;
 }
@@ -25,15 +24,24 @@ $brightorange: #F95800;
   letter-spacing: 1.5px;
 }
 
+.h2-styles {
+  h2 {
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 35px;
+  }
+}
+
 .container-styles {
   main {
     &.container {
       background-color: white;
       margin: 0 auto;
       padding: 30px auto;
-      // min-height: 785px;
-      max-width: 1000px;
       padding-bottom: 30px;
+      -webkit-box-shadow: 1px 1px 58px -8px rgba(0,0,0,0.72);
+      -moz-box-shadow: 1px 1px 58px -8px rgba(0,0,0,0.72);
+      box-shadow: 1px 1px 58px -8px rgba(0,0,0,0.72);
     }
   }
 }
@@ -71,7 +79,10 @@ $brightorange: #F95800;
 
 .back-style {
   .back {
-    color: $brightorange;
+    color: $mainfont;
+    background-color: $buttoncolor;
+    padding: 1px 7px;
+    border-radius: 4px;
     &:hover {
       color: $mainfont;
       text-decoration: none;
@@ -79,15 +90,75 @@ $brightorange: #F95800;
   }
 }
 
+.item-form {
+  @extend .heading-styles;
+  .form {
+    background-color: white;
+    max-width: 550px;
+    margin: 0 auto;
+    -webkit-box-shadow: 1px 1px 58px -8px rgba(0,0,0,0.72);
+    -moz-box-shadow: 1px 1px 58px -8px rgba(0,0,0,0.72);
+    box-shadow: 1px 1px 58px -8px rgba(0,0,0,0.72);
+    h2 {
+      text-align: center;
+      padding-top: 25px;
+      padding-bottom: 30px;
+    }
+    .row {
+      text-align: center;
+      .col {
+        text-align: justify;
+        margin: 0 auto;
+        width: 500px;
+        .imagebutton {
+          // border: 1px solid lightgrey;
+          border-radius: 4px;
+          width: 100%;
+          text-align: center;
+          padding: 6px 0;
+          background-color: $buttoncolor;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        input {
+          &.image {
+            display: none;
+          }
+          &.lending {
+            margin-left: 20px;
+          }
+        }
+        span {
+          &.lending-label {
+            text-transform: none;
+            font-weight: normal;
+          }
+        }
+        select {
+          width: 100%;
+          background-color: white;
+        }
+        .submit {
+          text-align: center;
+          .btn {
+            margin: 20px auto;
+            background-color: $buttoncolor;
+            font-family: inherit;
+            @extend .heading-styles;
+            font-weight: bold;
+            width: 200px;
+          }
+        }
+      }
+    }
+  }
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   color: $mainfont;
-  background-color: $brightorange;
-  // background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)), url("../images/grass.jpg");
-  // background-position: center;
-  // background-size: cover;
-  // background-repeat: no-repeat;
-  // background-attachment: fixed;
+  background-color: $white;
   margin-top: 90px;
 
   // -----     nav
@@ -100,15 +171,13 @@ body {
     background-color: $white;
     position: fixed;
     border-bottom: 4px solid $mainfont;
-    // transition: background-color 0.2s ease;
+    z-index: 3;
     nav {
       text-align: center;
-      max-width: 1000px;
-      z-index: 2;
+      z-index:3;
       ul {
         background-color: $white;
         margin: 0 auto;
-        z-index: 3;
         height: 90px;
         padding: 0 20px !important;
         border-bottom: 4px solid $mainfont;
@@ -124,20 +193,20 @@ body {
             position: absolute;
             // left:50%;
             // transform: translate(-50%);
-            color: $brightorange;
-            font-size: 32px;
-            font-weight: bold;
+            color: $mainfont;
+            font-size: 28px;
+            font-weight: 200;
             margin-top: 15px;
-            i {
-              text-align: center;
-              margin-top: -10px;
+            img {
+              max-width: 40px;
+              margin-top: -2px;
             }
           }
           .profilePic {
             margin-top: 18px;
             height: 40px;
             width: 40px;
-            border: 2.5px solid $brightorange;
+            border: 2.5px solid $mainfont;
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -145,7 +214,7 @@ body {
             float: right;
           }
           .logout {
-            color: $brightorange;
+            color: $mainfont;
             float: right;
             margin-top: 18px;
             margin-right: -45px;
@@ -159,13 +228,18 @@ body {
             padding-right: 50px;
             padding-left: 50px;
             &:hover {
-              color: $brightorange;
+              cursor: pointer;
+              // color: $brightorange;
               text-decoration: none;
             }
           }
         }
       }
     }
+
+  }
+  .drop-div {
+    text-align: center;
     .dropdown {
       // display: none;
       background-color: $mainfont;
@@ -176,12 +250,32 @@ body {
       width: 100%;
       padding: 20px;
       padding-right: 0;
+      height: 90px;
       transition: top 0.2s ease-in-out;
       &.open {
         display: block;
-        z-index: 1;
+        z-index: 2;
         top: 90px;
-
+        position: fixed;
+      }
+      li {
+        margin: 0 auto;
+        display: inline;
+        list-style: none;
+        line-height: 50px;
+        a {
+          font-family: inherit;
+          color: white;
+          display: inline;
+          font-size: 18px;
+          z-index: 11;
+          padding-right: 50px;
+          padding-left: 50px;
+          &:hover {
+            // color: $mainfont;
+            text-decoration: none;
+          }
+        }
       }
     }
   }
@@ -237,7 +331,7 @@ body {
       padding-bottom: 40px;
       text-align: center;
     }
-    .col-sm-4 {
+    .form {
       input{
         width: 100%;
         height: 40px;
@@ -249,61 +343,60 @@ body {
         height: 40px;
       }
     }
-    .search-row {
+    #search-row {
       margin: 20px 0;
     }
     .item {
-      margin: 20px 12px;
-      border: 2.5px solid $mainfont;
-      padding: 10px 20px;
-      // text-align: center;
-      min-height: 300px;
-      min-width: 300px;
+      padding-top: 28px;
       a {
         color: white;
         &:hover {
-          color: $brightorange;
+          // color: #cde6d0;
           text-decoration: none;
         }
       }
       .image-div {
-        .item-image {
-          min-height: 200px;
-          min-width: 100%;
-          background-position: center;
-          background-size: cover;
-          background-repeat: no-repeat;
+          .item-image {
+            height: 200px;
+            width: 100%;
+            margin: 0 auto;
+            // width: 250px;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            border: 3px solid $mainfont;
+            border-top: none;
+          }
         }
-      }
     }
+
     div {
       .Garden {
         @extend .category;
-        background-color: green;
-        padding: 5px 0;
+        background-color: #22b05c;
       }
       .Kitchen\/Home {
         @extend .category;
-        background-color: yellow;
+        background-color: #fff301;
         a {
           color: black;
         }
       }
       .Sports {
         @extend .category;
-        background-color: dodgerblue;
+        background-color: #0072bb;
       }
       .Books\/Maps {
         @extend .category;
-        background-color: brown;
+        background-color: #eb1c22;
       }
       .DIY {
         @extend .category;
-        background-color: orange;
+        background-color: #f6931c;
       }
       .Games\/Party {
         @extend .category;
-        background-color: deeppink;
+        background-color: #d83b94;
       }
     }
   }
@@ -314,10 +407,8 @@ body {
     @extend .container-styles;
     @extend .heading-styles;
     @extend .back-style;
+    @extend .h2-styles;
     h2 {
-      text-align: center;
-      padding-top: 40px;
-      padding-bottom: 40px;
       &.comments {
         text-align: left;
       }
@@ -339,13 +430,17 @@ body {
         }
       }
     }
+    #requestShow {
+      display: none;
+    }
     .button {
       font-family: 'Poppins', sans-serif;
       display: block;
       width: 100%;
       text-align: center;
-      background-color: $mainfont;
-      color: white;
+      background-color: $buttoncolor;
+      color: $mainfont;
+      font-weight: bold;
       border-radius: 5px;
       margin-top: 10px;
       height: 40px;
@@ -355,39 +450,48 @@ body {
         height: 60px;
       }
       &:hover {
-        background-color: $brightorange;
+        // background-color: $brightorange;
         text-decoration: none;
-      }
-      &.red {
-        background-color: $brightorange;
-        &:hover {
-          background-color: $mainfont;
-          text-decoration: none;
-        }
-      }
-      &.delete {
-        width: 200px;
+        cursor: pointer;
       }
     }
   }
 
+  // -----     items-new
+
+  &.itemsNew {
+    @extend .item-form;
+  }
+
+  // -----     items-edit
+
+  &.itemsEdit {
+    @extend .item-form;
+  }
   // -----     users-index
 
   &.usersIndex {
     @extend .container-styles;
     @extend .heading-styles;
     @extend .back-style;
-    h2 {
-      text-align: center;
-      padding-top: 25px;
-      padding-bottom: 30px;
-    }
+    @extend .h2-styles;
     .user-image {
       min-height: 200px;
       min-width: 100%;
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
+    }
+    .form {
+      text-align: center;
+      input{
+        width: 100%;
+        height: 40px;
+        outline: none;
+      }
+    }
+    #search-row {
+      margin: 20px 0;
     }
     .item {
       margin: 15px 0;
@@ -509,11 +613,7 @@ body {
     @extend .container-styles;
     @extend .heading-styles;
     @extend .back-style;
-    h2 {
-      text-align: center;
-      padding-top: 25px;
-      padding-bottom: 30px;
-    }
+    @extend .h2-styles;
     .user-image {
       min-height: 200px;
       min-width: 100%;
@@ -570,8 +670,19 @@ body {
   &.sentRequests {
     @extend .container-styles;
     @extend .heading-styles;
+    @extend .back-style;
+    @extend .h2-styles;
     .item {
       margin: 15px 0;
+      h3 {
+        a {
+          color: $mainfont;
+          &:hover {
+            text-shadow: 4px 2px $buttoncolor;
+            text-decoration: none;
+          }
+        }
+      }
       .image {
         img {
           max-width: 100%;
@@ -585,6 +696,11 @@ body {
           font-size: 16px;
         }
       }
+      .btn {
+        background-color: $buttoncolor;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
     }
   }
 
@@ -593,6 +709,8 @@ body {
   &.receivedRequests {
     @extend .container-styles;
     @extend .heading-styles;
+    @extend .back-style;
+    @extend .h2-styles;
     .item {
       margin: 15px 0;
       .image {

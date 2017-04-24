@@ -5,7 +5,7 @@
 
 <div>
   <div class="row item">
-    <div class="image col-sm-3" ng-repeat="friend in usersFriends.currentUser.friends">
+    <div class="image col-sm-6 col-md-3" ng-repeat="friend in usersFriends.currentUser.friends">
       <h4>{{ friend.full_name }}</h4>
       <div ng-style="{'background-image': 'url(' + friend.image.url + ')'}" class="user-image"></div>
       <a type="button" ng-click="usersFriends.removeFriend(friend)" class="button">Unfriend</a>
@@ -19,7 +19,7 @@
 
 <div>
   <div class="row item">
-    <div class="image col-sm-3" ng-repeat="pending in usersFriends.pending">
+    <div class="image col-sm-6 col-md-3" ng-repeat="pending in usersFriends.pending">
       <h4>{{ pending.full_name }}</h4>
       <div ng-style="{'background-image': 'url(' + pending.image_src + ')'}" class="user-image"></div>
       <a ng-click="usersFriends.acceptFriend(pending)" class="button">Accept Friend Request</a>

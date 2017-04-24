@@ -1,6 +1,15 @@
-<h2>Users Index</h2>
+<h2>Find Friends</h2>
 
-<input type="text" class="search" ng-model="usersIndex.q" placeholder="Find your friends...">
+<div class="row" id="search-row">
+  <div class="col-sm-4 form">
+  </div>
+  <div class="col-sm-4 form">
+    <h5>Search by Name</h5>
+    <input type="text" class="search" ng-model="usersIndex.q" placeholder="Find users...">
+  </div>
+  <div class="col-sm-4 form">
+  </div>
+</div>
 
 <div class="row item">
   <div ng-repeat="user in usersIndex.filtered" class="col-sm-6 col-md-3 text-center" ng-if="user.id !== main.currentUser.id">

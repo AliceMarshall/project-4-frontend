@@ -1,40 +1,41 @@
-<h2>Items New</h2>
-<div class="row">
-  <div class="col">
-    <form ng-submit="itemsNew.submit()">
-      <div class="form-group">
-        <label>Name</label>
-        <input ng-model="itemsNew.item.name" type="text" class="form-control">
-      </div>
-      <div class="form-group">
-        <label>Instructions</label>
-        <textarea rows="2" cols="50" ng-model="itemsNew.item.instructions" class="form-control"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="base64">Image</label>
-        <input ng-model="itemsNew.item.base64" base64 name="base64" type="file" class="form-control">
-      </div>
-      <div class="form-group">
-        <label>Lending Level</label><br>
-        <label for="friendLevel">
-          <p>Just Friends</p>
-          <input class="text-center" type="radio" name="friendLevel" ng-model="itemsNew.item.friend_level" value="friends">
-        </label>
-        <label for="friendLevel">
-          <p>Friends &amp; Mutual Friends</p>
-          <input type="radio" name="friendLevel" ng-model="itemsNew.item.friend_level" value="everyone">
-        </label>
-      </div>
-      <div class="form-group">
-        <label>Category</label><br>
-        <select ng-model="itemsNew.item.category_id" class="select">
-          <option disabled selected value="">Please select...</option>
-          <option ng-repeat="category in itemsNew.categories" ng-value="{{ category.id }}">{{ category.name }}</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <button class="btn">Submit</button>
-      </div>
-    </form>
+<div class="form">
+  <h2>Add a New Item</h2>
+  <div class="row">
+    <div class="col">
+      <form ng-submit="itemsNew.submit()">
+        <div class="form-group">
+          <label>Name</label>
+          <input ng-model="itemsNew.item.name" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Instructions</label>
+          <textarea rows="2" cols="50" ng-model="itemsNew.item.instructions" class="form-control"></textarea>
+        </div>
+        <div>
+          <label for="base64" class="imagebutton">Upload Item Image</label>
+          <input ng-model="itemsNew.item.base64" base64 name="base64" id="base64" type="file" class="image">
+        </div>
+        <div class="form-group">
+          <label>Lending Level</label><br>
+          <label for="friendLevel">
+            <input class="lending" type="radio" name="friendLevel" ng-model="itemsNew.item.friend_level" value="friends"> <span class="lending-label"> Just Friends</span>
+          </label>
+          <br>
+          <label for="friendLevel">
+            <input class="lending" type="radio" name="friendLevel" ng-model="itemsNew.item.friend_level" value="everyone"> <span class="lending-label"> Friends &amp; Mutual Friends</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Category</label><br>
+          <select ng-model="itemsNew.item.category_id" class="select">
+            <option disabled selected value="">Please select...</option>
+            <option ng-repeat="category in itemsNew.categories" ng-value="{{ category.id }}">{{ category.name }}</option>
+          </select>
+        </div>
+        <div class="form-group submit">
+          <button class="btn">Submit</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
