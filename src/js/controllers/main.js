@@ -2,8 +2,8 @@ angular
   .module('borrowApp')
   .controller('MainCtrl', MainCtrl);
 
-MainCtrl.$inject = ['User', '$rootScope', '$state', '$auth'];
-function MainCtrl(User, $rootScope, $state, $auth) {
+MainCtrl.$inject = ['User', '$rootScope', '$state', '$auth', '$scope'];
+function MainCtrl(User, $rootScope, $state, $auth, $scope) {
   const vm = this;
   vm.isAuthenticated = $auth.isAuthenticated;
 
@@ -17,6 +17,7 @@ function MainCtrl(User, $rootScope, $state, $auth) {
     if(vm.stateHasChanged) vm.message = null;
     if(!vm.stateHasChanged) vm.stateHasChanged = true;
     if($auth.getPayload()) vm.currentUser = $auth.getPayload();
+    $scope.navIsOpen = false;
   });
 
   const protectedStates = ['itemsNew', 'itemsEdit'];
