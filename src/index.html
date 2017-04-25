@@ -16,7 +16,7 @@
     <header>
       <nav class="container">
         <ul>
-          <li class="menu-icon" ng-click="navIsOpen = !navIsOpen"><img src="../images/cc-logo.png" alt=""> Community Chest</li>
+          <li class="menu-icon" ng-click="navIsOpen = !navIsOpen"><img src="../images/cc-logo.png" alt=""> <span class="cc">Community Chest</span></li>
           <li ng-if="main.isAuthenticated()" class="logout"><div class="profilePic" ng-controller="UsersShowCtrl as usersShow" ng-style="{'background-image': 'url(' + usersShow.user.image_src + ')'}"></div></li>
           <li ng-if="main.isAuthenticated()"><a ng-click="main.logout()" ui-sref-active="active" class="logout">Logout</a></li>
         </ul>

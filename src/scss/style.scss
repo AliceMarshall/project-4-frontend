@@ -534,8 +534,9 @@ body {
         display: block;
         width: 100%;
         text-align: center;
-        background-color: $mainfont;
-        color: white;
+        background-color: $buttoncolor;
+        color: $mainfont;
+        font-weight: bold;
         border-radius: 5px;
         margin-top: 10px;
         margin-bottom: 10px;
@@ -543,7 +544,8 @@ body {
         padding-top: 10px;
         border: none;
         &:hover {
-          background-color: $brightorange;
+          // background-color: $buttoncolor;
+          cursor: pointer;
           text-decoration: none;
         }
         &.friend {
@@ -663,8 +665,9 @@ body {
         display: block;
         width: 100%;
         text-align: center;
-        background-color: $mainfont;
-        color: white;
+        background-color: $buttoncolor;
+        color: $mainfont;
+        font-weight: bold;
         border-radius: 5px;
         margin-top: 10px;
         margin-bottom: 10px;
@@ -672,13 +675,15 @@ body {
         padding-top: 10px;
         border: none;
         &:hover {
-          background-color: $brightorange;
+          // background-color: $brightorange;
+          cursor: pointer;
           text-decoration: none;
         }
         &.red {
-          background-color: $brightorange;
+          background-color: $buttoncolor;
           &:hover {
-            background-color: $mainfont;
+            cursor: pointer;
+            // background-color: $mainfont;
             text-decoration: none;
           }
         }
@@ -774,6 +779,13 @@ body {
           height: 220px;
           width: 220px;
         }
+      }
+    }
+}
+@media only screen and (max-width: 550px) {
+    body {
+      .cc {
+        display: none;
       }
     }
 }
