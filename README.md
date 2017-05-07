@@ -1,64 +1,46 @@
-### Using this Angular Gulp Setup
+#Community Chest
 
-To get setup with the starter-code, you first need to run:
+###GA WDI London - Project 4 (Final Project)
+#####April 2017
 
-```sh
-$ bower install && gulp install
-```
 
-## How is gulp setup?
+The frontend of a full stack RESTful application. A lending site where users can log in and request and accept/decline friends on the app, upload items they are willing to lend to friends or mutual friends and friends. Users can also borrow their friends items. 
 
-Rather than trying to manage one giant `gulpfile.js` that is file responsible for creating multiple tasks, each task has been broken out into its own file and placed in a directory `tasks`. Any files in that directory get automatically required in the gulpfile using the `require-dir` npm package.
+####Inspiration
 
-To add a new task, simply add a new task file that directory.
+The idea was inspired by my dad who shares a chainsaw and trailer with friends and neighbours, creating a community to share a selection tools, which can get infrequent use by the owner.
 
-/tasks/default.js specifies the default set of tasks to run
-when you run `gulp`.
+***Check out 'Community Chest'*** [***here***](https://stormy-plains-97072.herokuapp.com):
 
-Configuration options are stored in the `package.json` file.
+![Image](http://i.imgur.com/KOPcjo9.jpg)
 
-When deploying, ensure that a `postinstall` script has been added to
-your package.json, e.g.
+####Approach
 
-```json
-"postinstall": "bower install && gulp deploy"
-```
+I had a very clear view of how I wanted the application to function from the beginning. Similarly with the UX design, I wanted to kept it quite simple. It has a slight unintentional Monopoly theme but only in the name and the way the items are displayed.
 
-This setup expects that there is a bower.json file with at least ONE package
-installed. This will created a bower_components directory after
-the postinstall script has run.
+You must create a profile and also make friends on the app before you can use a lot of the features. On login, you can find and filter other users, and make friend requests to people you know. Once the other users have accepted the request, you will be able to view their items on the 'Find Items' page. Items are categorized which you can filter by, you can also search by user and item name. 
 
-When deploying, this setup expects that the NODE_ENV is set to `production`.
-Also that the NPM_CONFIG_PRODUCTION is set to `false`. Then you can also set the API_URL to be the correct URL for your deployed app. This will automatically replace `http://localhost:4000` to be the correct url.
+When an item is created you set a lending level of either friends or mutual friends and friends, this means users who are friends with your friends can also view and request your items with the second lending level. When you make a request for an item, an email is sent to the owner, telling them which user and what item has been requested, the item is added to your 'Sent Requests' page, and tells you the status of the request. On the owner of the items 'Received Requests' page they can accept or reject the request, and a second email will be sent to the requestor
 
-You can do this by running:
+**Technologies Used**
 
-```bash
-$ heroku config:set NODE_ENV=production
-$ heroku config:set NPM_CONFIG_PRODUCTION=false
+- JavaScript, Express, Node.js, AngularJS, HTML5, CSS, SASS, Bootstrap were used to create the frontend application.
+- Ruby, Ruby on Rails and PostgreSQL database in the backend.
+- Pictures are base64 encoded and stored using the AWS S3 service.
+- Authentication uses JWT with Satellizer and BCrypt.
+- The Google Web Font 'Poppins' has been used to style the application.
+- Home page image from Unsplash.
 
-# An example url
-$ heroku config:set API_URL=https://project-on-heroku.herokuapp.com/
-```
+**Copyright &#169;**
 
-### Bower overrides
+I own none of the images or background used in the game. All other work is my own.
 
-Sometimes, you might want to `override` the `main` file(s) for a specific Bower component. You can do this directly inside the `bower.json` file like this:
+####Challenges & Problems
 
-```json
-"overrides": {
-  "bootstrap": {
-    "main": [
-      "dist/css/bootstrap.css",
-      "dist/js/bootstrap.js",
-      "dist/fonts/*"
-    ]
-  },
-  "font-awesome": {
-    "main": [
-      "css/font-awesome.css",
-      "fonts/*"
-    ]
-  }
-},
-```
+One of the more tricky parts of this project was working out how the item requests would work, in terms of accepting/pending/rejecting. I would have liked to implement a more instant response rather than email. I think it would work well as a OS/Android application so notifications could be used instead. In the week this was completed, I also was unable to have a messaging system in place, to make conversations regarding items much more user friendly.
+
+
+**Features & Bugs**
+
+- The GitHub login after the first 'login with github' is slightly temperamental and doesn't always login.
+
